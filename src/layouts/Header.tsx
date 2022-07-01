@@ -13,10 +13,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 
   Header: {
-    maxWidth: 1340,
-    height: 40,
+    maxWidth: 1300,
     display: 'flex',
-    padding: '22px 0',
+    padding: '22px 20px',
     margin: '0 auto',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -60,14 +59,20 @@ const useStyles = makeStyles((theme: Theme) => ({
   ButtonSignUp: {
     marginLeft: 20,
     color: '#132150',
+    textTransform: 'none',
+    fontWeight: 500,
+    fontSize: 18,
   },
 
   ButtonSignIn: {
     marginLeft: 12,
-    width: 124,
+    width: 150,
     background: '#438BF7',
     borderRadius: 10,
     color: '#FFFFFF',
+    textTransform: 'none',
+    fontWeight: 500,
+    fontSize: 18,
   },
 }));
 
