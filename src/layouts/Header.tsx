@@ -100,7 +100,7 @@ const Header = () => {
               aria-expanded={open ? 'true' : undefined}
               onClick={handleClick}
             >
-              <Typography variant='body2' component='span'>
+              <Typography fontSize={12} variant='body2' component='span'>
                 VND
               </Typography>
               <Image width={32} height={22} src={'/icons/VietNam.png'} alt='' />
