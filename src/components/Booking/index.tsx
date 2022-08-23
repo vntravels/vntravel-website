@@ -1,16 +1,31 @@
+/* eslint-disable react/no-children-prop */
 import { useState } from 'react';
-import { Box, Tab, Tabs, Theme, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  Divider,
+  Grid,
+  Tab,
+  Tabs,
+  Theme,
+  Typography,
+} from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import TabBooking from './TabBooking';
 import { Hotel, FlightTakeoff, DirectionsCar } from '@mui/icons-material';
 
-const useStyles = makeStyles((theme: Theme) => ({
+import TabBooking from './TabBooking';
+import FlightBooking from './FlightBooking';
+import HotelBooking from './HotelBooking';
+import CarBooking from './CarBooking';
+
+const useStyles = makeStyles((_theme: Theme) => ({
   Root: {
     margin: '0 auto',
     padding: '0 20px',
     marginTop: -95,
     maxWidth: 1300,
     filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1))',
+    position: 'relative',
   },
 
   BookingContainer: {
@@ -38,14 +53,23 @@ const useStyles = makeStyles((theme: Theme) => ({
       },
     },
   },
-}));
 
-function a11yProps(index: number) {
-  return {
-    id: `tab-${index}`,
-    'aria-controls': `tabpanel-${index}`,
-  };
-}
+  ButtonSubmit: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    background: '#438BF7',
+    borderRadius: 10,
+  },
+
+  ButtonText: {
+    fontWeight: 400,
+    fontSize: 14,
+    alignItems: 'center',
+    textAlign: 'center',
+    color: '#FFFFFF',
+  },
+}));
 
 const Booking = () => {
   const classes = useStyles();
@@ -58,42 +82,50 @@ const Booking = () => {
   return (
     <Box className={classes.Root}>
       <Box className={classes.BookingContainer}>
-        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <Tabs value={value} onChange={handleChange}>
-            <Tab
-              className={classes.TabItem}
-              label={
-                <Typography color='#706868'>
-                  <Hotel />
-                  <Typography fontSize={14} component='span'>
-                    Hotel
+        <Grid container>
+          <Grid item xs={10}>
+            <Tabs value={value} onChange={handleChange}>
+              <Tab
+                className={classes.TabItem}
+                label={
+                  <Typography color="#706868">
+                    <Hotel />
+                    <Typography fontSize={14} component="span">
+                      Hotel
+                    </Typography>
                   </Typography>
-                </Typography>
-              }
-            />
-            <Tab
-              className={classes.TabItem}
-              label={
-                <Typography color='#706868'>
-                  <FlightTakeoff />
-                  <Typography component='span'>Flight</Typography>
-                </Typography>
-              }
-            />
-            <Tab
-              className={classes.TabItem}
-              label={
-                <Typography color='#706868'>
-                  <DirectionsCar />
-                  <Typography component='span'>Car Rental</Typography>
-                </Typography>
-              }
-            />
-          </Tabs>
-        </Box>
-        <TabBooking value={value} index={0} />
-        <TabBooking value={value} index={1} />
-        <TabBooking value={value} index={2} />
+                }
+              />
+              <Tab
+                className={classes.TabItem}
+                label={
+                  <Typography color="#706868">
+                    <FlightTakeoff />
+                    <Typography component="span">Flight</Typography>
+                  </Typography>
+                }
+              />
+              <Tab
+                className={classes.TabItem}
+                label={
+                  <Typography color="#706868">
+                    <DirectionsCar />
+                    <Typography component="span">Car Rental</Typography>
+                  </Typography>
+                }
+              />
+            </Tabs>
+            <Divider />
+            <TabBooking children={<HotelBooking />} value={value} index={0} />
+            <TabBooking children={<FlightBooking />} value={value} index={1} />
+            <TabBooking children={<CarBooking />} value={value} index={2} />
+          </Grid>
+          <Grid item xs={2} position="relative">
+            <Button className={classes.ButtonSubmit} variant="contained">
+              <Typography className={classes.ButtonText}>Search</Typography>
+            </Button>
+          </Grid>
+        </Grid>
       </Box>
     </Box>
   );
