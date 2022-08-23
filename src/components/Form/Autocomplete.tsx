@@ -66,7 +66,7 @@ const VTAutocomplete = ({
       className={classes.Autocomplete}
       freeSolo
       disableClearable
-      options={data}
+      options={data.map((option: any) => option.title)}
       // ListboxComponent={() => (
       //   <div className={classes.BoxOptions}>
       //     <List
@@ -81,10 +81,10 @@ const VTAutocomplete = ({
       //     </List>
       //   </div>
       // )}
-      renderOption={(params: object, option: any) => (
-        <Box className={classes.BoxOptions} {...params}>
+      renderOption={(params: object, option: string) => (
+        <Box className={classes.BoxOptions} {...params} key={option}>
           <Box sx={{ marginRight: 2 }}>{IconComponent}</Box>
-          {option.title}
+          {option}
         </Box>
       )}
       renderInput={(params) => (
