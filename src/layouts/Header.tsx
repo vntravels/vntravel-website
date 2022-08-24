@@ -1,7 +1,17 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { makeStyles } from '@mui/styles';
-import { Theme, Box, Button, ListItemIcon, ListItemText, Menu, MenuItem, Typography, alpha } from '@mui/material';
+import {
+  Theme,
+  Box,
+  Button,
+  ListItemIcon,
+  ListItemText,
+  Menu,
+  MenuItem,
+  Typography,
+} from '@mui/material';
+import { useRouter } from 'next/router';
 
 import Logo from 'src/components/Logo';
 
@@ -61,23 +71,25 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: '#132150',
     textTransform: 'none',
     fontWeight: 500,
-    fontSize: 18,
+    fontSize: 16,
   },
 
   ButtonSignIn: {
     marginLeft: 12,
-    width: 150,
+    width: 140,
     background: '#438BF7',
     borderRadius: 10,
     color: '#FFFFFF',
     textTransform: 'none',
     fontWeight: 500,
-    fontSize: 18,
+    fontSize: 16,
   },
 }));
 
 const Header = () => {
   const classes = useStyles();
+  const router = useRouter();
+
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -96,14 +108,21 @@ const Header = () => {
             <Button
               className={classes.ButtonLocation}
               aria-controls={open ? 'basic-menu' : undefined}
-              aria-haspopup='true'
+              aria-haspopup="true"
               aria-expanded={open ? 'true' : undefined}
               onClick={handleClick}
+              endIcon={
+                <Image
+                  width={32}
+                  height={22}
+                  src={'/icons/VietNam.png'}
+                  alt=""
+                />
+              }
             >
-              <Typography fontSize={12} variant='body2' component='span'>
+              <Typography fontSize={12} variant="body2" component="span">
                 VND
               </Typography>
-              <Image width={32} height={22} src={'/icons/VietNam.png'} alt='' />
             </Button>
             <Menu
               className={classes.MenuLocation}
@@ -122,25 +141,30 @@ const Header = () => {
             >
               <MenuItem onClick={handleClose}>
                 <ListItemIcon>
-                  <Image width={32} height={22} src={'/icons/US.png'} alt='' />
+                  <Image width={32} height={22} src={'/icons/US.png'} alt="" />
                 </ListItemIcon>
                 <ListItemText>United State (USD)</ListItemText>
               </MenuItem>
               <MenuItem onClick={handleClose}>
                 <ListItemIcon>
-                  <Image width={32} height={22} src={'/icons/UK.png'} alt='' />
+                  <Image width={32} height={22} src={'/icons/UK.png'} alt="" />
                 </ListItemIcon>
                 <ListItemText>United Kingdom (EUR)</ListItemText>
               </MenuItem>
               <MenuItem onClick={handleClose}>
                 <ListItemIcon>
-                  <Image width={32} height={22} src={'/icons/SG.png'} alt='' />
+                  <Image width={32} height={22} src={'/icons/SG.png'} alt="" />
                 </ListItemIcon>
                 <ListItemText>Singapore (SGD)</ListItemText>
               </MenuItem>
               <MenuItem onClick={handleClose}>
                 <ListItemIcon>
-                  <Image width={32} height={22} src={'/icons/Australia.png'} alt='' />
+                  <Image
+                    width={32}
+                    height={22}
+                    src={'/icons/Australia.png'}
+                    alt=""
+                  />
                 </ListItemIcon>
                 <ListItemText>Australia (AUD)</ListItemText>
               </MenuItem>
@@ -148,8 +172,17 @@ const Header = () => {
           </Box>
 
           <Box>
-            <Button className={classes.ButtonSignUp}>Sign up</Button>
-            <Button variant='contained' className={classes.ButtonSignIn}>
+            <Button
+              className={classes.ButtonSignUp}
+              onClick={() => router.push('/signup')}
+            >
+              Sign up
+            </Button>
+            <Button
+              variant="contained"
+              className={classes.ButtonSignIn}
+              onClick={() => router.push('/signin')}
+            >
               Sign in
             </Button>
           </Box>
