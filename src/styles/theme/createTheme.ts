@@ -14,6 +14,11 @@ const customTheme = createTheme({
     },
     h2: {
       fontWeight: 700,
+      fontSize: '24px',
+    },
+    h3: {
+      fontWeight: 700,
+      fontSize: '22px',
     },
     h4: {
       fontWeight: 400,
@@ -22,6 +27,7 @@ const customTheme = createTheme({
     h6: {},
     subtitle1: {},
     subtitle2: {
+      fontSize: '14px',
       fontWeight: 400,
     },
     body1: {
