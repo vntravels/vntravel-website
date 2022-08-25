@@ -5,6 +5,7 @@ import customTheme from 'src/styles/theme/createTheme';
 import createEmotionCache from 'src/utils/createEmotionCache';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import '../styles/global.scss';
 
 const emotionCache = createEmotionCache();
@@ -14,7 +15,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     <CacheProvider value={emotionCache}>
       <ThemeProvider theme={customTheme}>
         <LocalizationProvider dateAdapter={AdapterMoment}>
-          <Component {...pageProps} />
+          <GoogleOAuthProvider clientId="591469968022-1nqcpb9svpv49jdm1tbttak5s8shndtp.apps.googleusercontent.com">
+            <Component {...pageProps} />
+          </GoogleOAuthProvider>
         </LocalizationProvider>
       </ThemeProvider>
     </CacheProvider>

@@ -1,5 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
+import { makeStyles } from '@mui/styles';
+import Head from 'next/head';
 
 // project imports
 import Logo from 'src/components/Logo';
@@ -12,10 +14,8 @@ import {
   useMediaQuery,
   useTheme,
 } from '@mui/material';
-import { makeStyles } from '@mui/styles';
-import FormLogin from 'src/components/FormLogin';
+import FormLogin from 'src/components/Auth/FormSignin';
 import Footer from 'src/layouts/Footer';
-import Head from 'next/head';
 
 const useStyles = makeStyles((theme: Theme) => ({
   Root: {
@@ -126,7 +126,7 @@ const Login = () => {
                       </Grid>
                     </Grid>
                     <Grid item xs={12}>
-                      <FormLogin login={3} />
+                      <FormLogin />
                     </Grid>
                   </Grid>
                 </Box>

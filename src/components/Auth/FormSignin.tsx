@@ -1,31 +1,26 @@
 import React from 'react';
 import Link from 'next/link';
-
+import * as Yup from 'yup';
+import { Formik } from 'formik';
+import { useGoogleLogin } from '@react-oauth/google';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+import Image from 'next/image';
 import { makeStyles } from '@mui/styles';
 import {
   Box,
   Button,
   Checkbox,
   Divider,
-  FormControl,
   FormControlLabel,
-  FormHelperText,
   Grid,
   IconButton,
   InputAdornment,
-  InputLabel,
-  OutlinedInput,
   Stack,
   Theme,
   Typography,
 } from '@mui/material';
 
-import * as Yup from 'yup';
-import { Formik } from 'formik';
-
-import { Visibility, VisibilityOff } from '@mui/icons-material';
-import Image from 'next/image';
-import VTFormInput from './Form/FormInput';
+import VTFormInput from '../Form/FormInput';
 
 const useStyles = makeStyles((theme: Theme) => ({
   AuthButton: {
@@ -113,14 +108,14 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required('Password is required!'),
 });
 
-const FormLogin = (props: any) => {
+const FormLogin = () => {
   const classes = useStyles();
 
   const [checked, setChecked] = React.useState(true);
   const [showPassword, setShowPassword] = React.useState(false);
 
   const googleHandler = async () => {
-    console.error('Login');
+    login();
   };
 
   const handleClickShowPassword = () => {
@@ -130,6 +125,12 @@ const FormLogin = (props: any) => {
   const handleMouseDownPassword = (event: any) => {
     event.preventDefault();
   };
+
+  const login = useGoogleLogin({
+    onSuccess: (credentialResponse) => {
+      console.log(credentialResponse);
+    },
+  });
 
   return (
     <React.Fragment>
@@ -249,7 +250,7 @@ const FormLogin = (props: any) => {
             disableElevation
             fullWidth={true}
             className={classes.AuthButton}
-            onClick={googleHandler}
+            onClick={() => login()}
             size="large"
             variant="contained"
           >
@@ -264,7 +265,7 @@ const FormLogin = (props: any) => {
             </Typography>
           </Button>
         </Grid>
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <Button
             disableElevation
             fullWidth={true}
@@ -303,7 +304,7 @@ const FormLogin = (props: any) => {
               Sign in with Twitter
             </Typography>
           </Button>
-        </Grid>
+        </Grid> */}
       </Grid>
     </React.Fragment>
   );
