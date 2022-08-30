@@ -14,6 +14,9 @@ import {
 import { useRouter } from 'next/router';
 
 import Logo from 'src/components/Logo';
+import { useAppSelector } from 'src/common/redux/hooks';
+import { selectIsLogin } from 'src/common/redux/auth/auth.slice';
+import HeaderDropdown from 'src/components/Header/Dropdown';
 
 const useStyles = makeStyles((theme: Theme) => ({
   Root: {
@@ -53,9 +56,10 @@ const useStyles = makeStyles((theme: Theme) => ({
       boxShadow:
         'rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
       '& .MuiMenu-list': {
-        padding: '10px 0',
+        padding: 0,
       },
       '& .MuiMenuItem-root': {
+        padding: 10,
         '& .MuiListItemText-root': {
           marginLeft: 8,
           '& .MuiTypography-root': {
@@ -89,6 +93,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 const Header = () => {
   const classes = useStyles();
   const router = useRouter();
+  const isLogin = useAppSelector(selectIsLogin);
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -172,19 +177,25 @@ const Header = () => {
           </Box>
 
           <Box>
-            <Button
-              className={classes.ButtonSignUp}
-              onClick={() => router.push('/signup')}
-            >
-              Sign up
-            </Button>
-            <Button
-              variant="contained"
-              className={classes.ButtonSignIn}
-              onClick={() => router.push('/signin')}
-            >
-              Sign in
-            </Button>
+            {isLogin ? (
+              <HeaderDropdown />
+            ) : (
+              <>
+                <Button
+                  className={classes.ButtonSignUp}
+                  onClick={() => router.push('/signup')}
+                >
+                  Sign up
+                </Button>
+                <Button
+                  variant="contained"
+                  className={classes.ButtonSignIn}
+                  onClick={() => router.push('/signin')}
+                >
+                  Sign in
+                </Button>
+              </>
+            )}
           </Box>
         </Box>
       </Box>
