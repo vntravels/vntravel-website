@@ -1,18 +1,49 @@
-import { Html, Head, Main, NextScript } from 'next/document';
+import { ServerStyleSheets } from '@mui/styles';
+import Document, { Html, Head, Main, NextScript } from 'next/document';
+import React from 'react';
 
-export default function Document() {
-  return (
-    <Html>
-      <Head>
-        <meta name='description' content='VnTravel Website' />
-        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-        <link rel='icon' href='/favicon.ico' />
-        <link href='https://fonts.googleapis.com/css2?family=Poppins:300,400,500,700&display=swap' rel='stylesheet' />
-      </Head>
-      <body>
-        <Main />
-        <NextScript />
-      </body>
-    </Html>
-  );
+export default class MyDocument extends Document {
+  static getInitialProps: (ctx: any) => Promise<any>;
+  render() {
+    return (
+      <Html>
+        <Head>
+          <meta name="description" content="VnTravel Website" />
+          <link rel="icon" href="/favicon.ico" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
+            rel="stylesheet"
+          />
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
+  }
 }
+
+MyDocument.getInitialProps = async (ctx) => {
+  // Render app and page and get the context of the page with collected side effects.
+  const sheets = new ServerStyleSheets();
+  const originalRenderPage = ctx.renderPage;
+
+  ctx.renderPage = () =>
+    originalRenderPage({
+      enhanceApp: (App: any) => (props: any) =>
+        sheets.collect(<App {...props} />),
+    });
+
+  const initialProps = await Document.getInitialProps(ctx);
+
+  return {
+    ...initialProps,
+    // Styles fragment is rendered after the app and page rendering finish.
+    styles: [
+      ...React.Children.toArray(initialProps.styles),
+      sheets.getStyleElement(),
+    ],
+  };
+};

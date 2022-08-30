@@ -1,0 +1,39 @@
+/**
+ * Import the CSS file that sets up the `font-weight: 400` and `500` variants of the `scandia-web` font family.
+ * Reference: https://fonts.adobe.com/fonts/scandia#details-section
+ */
+/* @import url("https://use.typekit.net/wot0qbd.css"); */
+
+/**
+ * Setup the `font-weight: 700` variant of the `scandia-web` font family.
+ *
+ * References:
+ * - https://create-react-app.dev/docs/adding-images-fonts-and-files/ (RE: how webpack resolves paths in CSS)
+ * - https://stackoverflow.com/questions/41676054/how-to-add-fonts-to-create-react-app-based-projects
+ */
+@font-face {
+  font-family: 'Poppins';
+  src: url('../fonts/PoppinsBold/Poppins-Bold.ttf') format('ttf'),
+    url('../fonts/PoppinsBold/Poppins-BoldItalic.ttf') format('ttf');
+  font-weight: 700;
+  font-style: normal;
+}
+
+/*
+  Note: Weight of 500 is commonly called "Medium"; and weight of 400 is commonly called "Regular".
+  Reference: https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight#common_weight_name_mapping
+*/
+@font-face {
+  font-family: 'Poppins';
+  src: url('../fonts/PoppinsMedium/Poppins-Medium.ttf') format('ttf'),
+    url('../fonts/PoppinsMedium/Poppins-MediumItalic.ttf') format('ttf');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../fonts/PoppinsRegular/Poppins-Regular.ttf') format('ttf');
+  font-weight: 400;
+  font-style: normal;
+}
