@@ -14,7 +14,7 @@ import {
   useMediaQuery,
   useTheme,
 } from '@mui/material';
-import FormLogin from 'src/components/Auth/FormSignin';
+import FormSignin from 'src/components/Auth/FormSignin';
 import Footer from 'src/layouts/Footer';
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const Login = () => {
+const Signin = () => {
   const classes = useStyles();
   const theme = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down('sm'));
@@ -126,7 +126,7 @@ const Login = () => {
                       </Grid>
                     </Grid>
                     <Grid item xs={12}>
-                      <FormLogin />
+                      <FormSignin />
                     </Grid>
                   </Grid>
                 </Box>
@@ -140,4 +140,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signin;
