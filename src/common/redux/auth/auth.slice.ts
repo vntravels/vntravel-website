@@ -4,8 +4,9 @@ import type { RootState } from '../store';
 // declaring the types for our state
 export type AuthState = {
   signinData: {
-    email: string;
-    password: string;
+    email?: string;
+    password?: string;
+    access_token?: string;
   };
   signupData: {
     firstName?: string;
@@ -51,7 +52,8 @@ export const authSlice = createSlice({
   },
 });
 
-export const { setSigninData, setIsLogin, setSignupData, setSignupResponse } = authSlice.actions;
+export const { setSigninData, setIsLogin, setSignupData, setSignupResponse } =
+  authSlice.actions;
 
 export const selectSigninData = (state: RootState) => state.auth.signinData;
 export const selectIsLogin = (state: RootState) => state.auth.isLogin;

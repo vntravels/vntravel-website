@@ -73,10 +73,7 @@ const FormLogin = () => {
   const login = useGoogleLogin({
     onSuccess: async (credentialResponse) => {
       const { access_token } = credentialResponse;
-      const { data } = await AxiosInstance.get(
-        `${config.GOOGLE_AUTH_URL}?access_token=${access_token}`,
-      );
-      console.log(data);
+      dispatch(setSigninData({ access_token }));
     },
   });
 
@@ -89,9 +86,8 @@ const FormLogin = () => {
           onSubmit={(values, { setSubmitting }) => {
             dispatch(setSigninData(values));
             setTimeout(() => {
-              console.log(values);
               setSubmitting(false);
-            }, 400);
+            }, 1000);
           }}
         >
           {({

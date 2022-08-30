@@ -1,8 +1,11 @@
 import React from 'react';
 import { Alert, Collapse } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import { useAppSelector } from 'src/common/redux/hooks';
-import { selectAlertState } from 'src/common/redux/alert/alert.slice';
+import { useAppDispatch, useAppSelector } from 'src/common/redux/hooks';
+import {
+  selectAlertState,
+  setAlertState,
+} from 'src/common/redux/alert/alert.slice';
 
 const useStyles = makeStyles(() => ({
   Alert: {
@@ -13,28 +16,36 @@ const useStyles = makeStyles(() => ({
 
 const VTAlert = () => {
   const classes = useStyles();
+  const dispatch = useAppDispatch();
   const alertState = useAppSelector(selectAlertState);
-  const [open, setOpen] = React.useState<boolean>(alertState.open);
-
-  React.useEffect(() => {
-    setOpen(alertState.open);
-  }, [alertState.open]);
 
   return (
     <Collapse
       className={classes.Alert}
-      in={open}
+      in={alertState.open}
       timeout={1000}
       addEndListener={() =>
         setTimeout(() => {
-          setOpen(false);
+          dispatch(
+            setAlertState({
+              open: false,
+              message: alertState.message,
+              severity: alertState.severity,
+            }),
+          );
         }, 4000)
       }
     >
       <Alert
         severity={alertState.severity}
         onClose={() => {
-          setOpen(false);
+          dispatch(
+            setAlertState({
+              open: false,
+              message: alertState.message,
+              severity: alertState.severity,
+            }),
+          );
         }}
       >
         {alertState.message}

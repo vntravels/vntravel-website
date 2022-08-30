@@ -13,7 +13,6 @@ import {
   Grid,
   IconButton,
   InputAdornment,
-  Stack,
   Theme,
   Typography,
 } from '@mui/material';
