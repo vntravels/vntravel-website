@@ -1,6 +1,7 @@
 import createSagaMiddleware from 'redux-saga';
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
 import authReducer from './auth/auth.slice';
+import alertReducer from './alert/alert.slice';
 import rootSaga from './rootSaga';
 
 const sagaMiddleware = createSagaMiddleware();
@@ -8,6 +9,7 @@ const sagaMiddleware = createSagaMiddleware();
 export const store = configureStore({
   reducer: {
     auth: authReducer,
+    alert: alertReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ thunk: false }).concat(sagaMiddleware),
