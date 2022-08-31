@@ -9,24 +9,25 @@ import { store } from 'src/common/redux/store';
 import VTAlert from 'src/components/Alert';
 import customTheme from 'src/styles/theme/createTheme';
 import createEmotionCache from 'src/utils/createEmotionCache';
+import config from 'src/utils/config';
 import '../styles/global.scss';
 
 const emotionCache = createEmotionCache();
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Provider store={store}>
-      <CacheProvider value={emotionCache}>
-        <ThemeProvider theme={customTheme}>
+    <CacheProvider value={emotionCache}>
+      <Provider store={store}>
+        <ThemeProvider theme={customTheme()}>
           <LocalizationProvider dateAdapter={AdapterMoment}>
-            <GoogleOAuthProvider clientId="591469968022-1nqcpb9svpv49jdm1tbttak5s8shndtp.apps.googleusercontent.com">
+            <GoogleOAuthProvider clientId={config.GOOGLE_CLIENT_ID}>
               <VTAlert />
               <Component {...pageProps} />
             </GoogleOAuthProvider>
           </LocalizationProvider>
         </ThemeProvider>
-      </CacheProvider>
-    </Provider>
+      </Provider>
+    </CacheProvider>
   );
 }
 
