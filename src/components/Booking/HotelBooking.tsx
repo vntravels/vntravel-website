@@ -49,7 +49,7 @@ const HotelBooking = ({}: TabPanelProps) => {
         <Grid container>
           <Grid item xs={5.5}>
             <VTDatePicker
-              title="Checkin"
+              title="Check in"
               selected={startDate}
               onChange={(date: Date) => setStartDate(date)}
               selectsStart
@@ -67,7 +67,7 @@ const HotelBooking = ({}: TabPanelProps) => {
           </Grid>
           <Grid item xs={5.5}>
             <VTDatePicker
-              title="Checkout"
+              title="Check out"
               selected={endDate}
               onChange={(date: Date) => setEndDate(date)}
               selectsEnd

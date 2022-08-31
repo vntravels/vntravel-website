@@ -41,10 +41,9 @@ const useStyles = makeStyles((theme: Theme) => ({
 
   ButtonLocation: {
     color: '#132150',
-    paddingRight: 0,
 
     '& span': {
-      marginRight: 10,
+      marginRight: 6,
       verticalAlign: 'bottom',
     },
   },
@@ -59,7 +58,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         padding: 0,
       },
       '& .MuiMenuItem-root': {
-        padding: 10,
+        padding: 12,
         '& .MuiListItemText-root': {
           marginLeft: 8,
           '& .MuiTypography-root': {
@@ -71,7 +70,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 
   ButtonSignUp: {
-    marginLeft: 20,
+    marginLeft: 12,
     color: '#132150',
     textTransform: 'none',
     fontWeight: 500,
@@ -112,22 +111,13 @@ const Header = () => {
           <Box>
             <Button
               className={classes.ButtonLocation}
-              aria-controls={open ? 'basic-menu' : undefined}
-              aria-haspopup="true"
-              aria-expanded={open ? 'true' : undefined}
+              disableRipple
               onClick={handleClick}
-              endIcon={
-                <Image
-                  width={32}
-                  height={22}
-                  src={'/icons/VietNam.png'}
-                  alt=""
-                />
-              }
             >
               <Typography fontSize={12} variant="body2" component="span">
                 VND
               </Typography>
+              <Image width={28} height={28} src={'/icons/iconVN.svg'} alt="" />
             </Button>
             <Menu
               className={classes.MenuLocation}
@@ -146,28 +136,43 @@ const Header = () => {
             >
               <MenuItem onClick={handleClose}>
                 <ListItemIcon>
-                  <Image width={32} height={22} src={'/icons/US.png'} alt="" />
+                  <Image
+                    width={28}
+                    height={28}
+                    src={'/icons/iconUS.svg'}
+                    alt=""
+                  />
                 </ListItemIcon>
                 <ListItemText>United State (USD)</ListItemText>
               </MenuItem>
               <MenuItem onClick={handleClose}>
                 <ListItemIcon>
-                  <Image width={32} height={22} src={'/icons/UK.png'} alt="" />
+                  <Image
+                    width={28}
+                    height={28}
+                    src={'/icons/iconUK.svg'}
+                    alt=""
+                  />
                 </ListItemIcon>
                 <ListItemText>United Kingdom (EUR)</ListItemText>
               </MenuItem>
               <MenuItem onClick={handleClose}>
                 <ListItemIcon>
-                  <Image width={32} height={22} src={'/icons/SG.png'} alt="" />
+                  <Image
+                    width={28}
+                    height={28}
+                    src={'/icons/iconSG.svg'}
+                    alt=""
+                  />
                 </ListItemIcon>
                 <ListItemText>Singapore (SGD)</ListItemText>
               </MenuItem>
               <MenuItem onClick={handleClose}>
                 <ListItemIcon>
                   <Image
-                    width={32}
-                    height={22}
-                    src={'/icons/Australia.png'}
+                    width={28}
+                    height={28}
+                    src={'/icons/iconAU.svg'}
                     alt=""
                   />
                 </ListItemIcon>
