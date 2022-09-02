@@ -3,6 +3,7 @@ import axios from 'axios';
 const instance = axios.create({
   baseURL: process.env.API_ENDPOINT_URL || 'http://localhost:4000/api/v1',
   timeout: 10000,
+  withCredentials: true,
 });
 
 instance.interceptors.request.use(

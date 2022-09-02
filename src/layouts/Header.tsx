@@ -10,6 +10,9 @@ import {
   Menu,
   MenuItem,
   Typography,
+  Divider,
+  IconButton,
+  Badge,
 } from '@mui/material';
 import { useRouter } from 'next/router';
 
@@ -17,6 +20,8 @@ import Logo from 'src/components/Logo';
 import { useAppSelector } from 'src/common/redux/hooks';
 import { selectIsLogin } from 'src/common/redux/auth/auth.slice';
 import HeaderDropdown from 'src/components/Header/Dropdown';
+import { NotificationsNoneOutlined } from '@mui/icons-material';
+import Link from 'next/link';
 
 const useStyles = makeStyles((theme: Theme) => ({
   Root: {
@@ -43,7 +48,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: '#132150',
 
     '& span': {
-      marginRight: 6,
+      marginRight: 8,
       verticalAlign: 'bottom',
     },
   },
@@ -106,7 +111,9 @@ const Header = () => {
   return (
     <Box className={classes.Root}>
       <Box className={classes.Header}>
-        <Logo />
+        <Link href="/">
+          <Logo />
+        </Link>
         <Box className={classes.RightNav}>
           <Box>
             <Button
@@ -117,7 +124,7 @@ const Header = () => {
               <Typography fontSize={12} variant="body2" component="span">
                 VND
               </Typography>
-              <Image width={28} height={28} src={'/icons/iconVN.svg'} alt="" />
+              <Image width={24} height={24} src={'/icons/iconVN.svg'} alt="" />
             </Button>
             <Menu
               className={classes.MenuLocation}
@@ -137,8 +144,8 @@ const Header = () => {
               <MenuItem onClick={handleClose}>
                 <ListItemIcon>
                   <Image
-                    width={28}
-                    height={28}
+                    width={24}
+                    height={24}
                     src={'/icons/iconUS.svg'}
                     alt=""
                   />
@@ -148,8 +155,8 @@ const Header = () => {
               <MenuItem onClick={handleClose}>
                 <ListItemIcon>
                   <Image
-                    width={28}
-                    height={28}
+                    width={24}
+                    height={24}
                     src={'/icons/iconUK.svg'}
                     alt=""
                   />
@@ -159,8 +166,8 @@ const Header = () => {
               <MenuItem onClick={handleClose}>
                 <ListItemIcon>
                   <Image
-                    width={28}
-                    height={28}
+                    width={24}
+                    height={24}
                     src={'/icons/iconSG.svg'}
                     alt=""
                   />
@@ -170,8 +177,8 @@ const Header = () => {
               <MenuItem onClick={handleClose}>
                 <ListItemIcon>
                   <Image
-                    width={28}
-                    height={28}
+                    width={24}
+                    height={24}
                     src={'/icons/iconAU.svg'}
                     alt=""
                   />
@@ -181,9 +188,21 @@ const Header = () => {
             </Menu>
           </Box>
 
-          <Box>
+          <Box sx={{ display: 'contents' }}>
             {isLogin ? (
-              <HeaderDropdown />
+              <>
+                <IconButton>
+                  <Badge badgeContent={2} color="primary">
+                    <NotificationsNoneOutlined />
+                  </Badge>
+                </IconButton>
+                <Divider
+                  orientation="vertical"
+                  flexItem
+                  sx={{ margin: '10px 6px' }}
+                />
+                <HeaderDropdown />
+              </>
             ) : (
               <>
                 <Button

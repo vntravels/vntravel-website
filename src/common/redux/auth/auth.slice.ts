@@ -49,11 +49,17 @@ export const authSlice = createSlice({
     setSignupResponse(state, action) {
       state.signupResponse = action.payload;
     },
+    logout() {},
   },
 });
 
-export const { setSigninData, setIsLogin, setSignupData, setSignupResponse } =
-  authSlice.actions;
+export const {
+  setSigninData,
+  setIsLogin,
+  setSignupData,
+  setSignupResponse,
+  logout,
+} = authSlice.actions;
 
 export const selectSigninData = (state: RootState) => state.auth.signinData;
 export const selectIsLogin = (state: RootState) => state.auth.isLogin;
