@@ -16,3 +16,8 @@ export const signup = async (payload: any): Promise<any> => {
   );
   return data;
 };
+
+export const logout = async (): Promise<any> => {
+  await AxiosInstance.post(`${config.API_ENDPOINT_URL}/auth/logout`);
+  return;
+};

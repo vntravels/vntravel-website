@@ -7,8 +7,18 @@ import {
   Theme,
   MenuItem,
   Divider,
+  Button,
+  Typography,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import {
+  AccountBoxOutlined,
+  ListAltOutlined,
+  LogoutOutlined,
+  ManageAccountsOutlined,
+} from '@mui/icons-material';
+import { useAppDispatch } from 'src/common/redux/hooks';
+import { logout } from 'src/common/redux/auth/auth.slice';
 
 const useStyles = makeStyles((theme: Theme) => ({
   AvatarDropdown: {
@@ -32,10 +42,24 @@ const useStyles = makeStyles((theme: Theme) => ({
       },
     },
   },
+
+  Button: {
+    '&:hover': {
+      background: 'transparent',
+      '& .MuiAvatar-root': {
+        background: '#eae6eb',
+      },
+    },
+  },
+
+  Divider: {
+    margin: '0 !important',
+  },
 }));
 
 const HeaderDropdown = () => {
   const classes = useStyles();
+  const dispatch = useAppDispatch();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -49,12 +73,23 @@ const HeaderDropdown = () => {
 
   return (
     <>
-      <Avatar
+      <Button
+        disableRipple
+        className={classes.Button}
         onClick={handleClick}
-        alt="Remy Sharp"
-        src="/static/images/avatar/1.jpg"
-        sx={{ cursor: 'pointer' }}
-      />
+        endIcon={
+          <Avatar
+            sx={{ width: '36px', height: '36px' }}
+            alt="Remy Sharp"
+            src="/static/images/avatar/1.jpg"
+          />
+        }
+      >
+        <Typography variant="subtitle2" color="black" textTransform={'none'}>
+          Lam Tung
+        </Typography>
+      </Button>
+
       <Menu
         className={classes.AvatarDropdown}
         anchorEl={anchorEl}
@@ -71,20 +106,32 @@ const HeaderDropdown = () => {
         disableScrollLock
       >
         <MenuItem onClick={handleClose}>
-          <ListItemIcon></ListItemIcon>
+          <ListItemIcon>
+            <AccountBoxOutlined />
+          </ListItemIcon>
           <ListItemText>Profile</ListItemText>
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          <ListItemIcon></ListItemIcon>
-          <ListItemText>Booking</ListItemText>
+          <ListItemIcon>
+            <ListAltOutlined />
+          </ListItemIcon>
+          <ListItemText>My Booking</ListItemText>
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          <ListItemIcon></ListItemIcon>
+          <ListItemIcon>
+            <ManageAccountsOutlined />
+          </ListItemIcon>
           <ListItemText>Settings</ListItemText>
         </MenuItem>
-        <Divider />
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon></ListItemIcon>
+        <Divider className={classes.Divider} />
+        <MenuItem
+          onClick={() => {
+            dispatch(logout());
+          }}
+        >
+          <ListItemIcon>
+            <LogoutOutlined />
+          </ListItemIcon>
           <ListItemText>Logout</ListItemText>
         </MenuItem>
       </Menu>
