@@ -1,6 +1,7 @@
 import createSagaMiddleware from 'redux-saga';
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
 import authReducer from './auth/auth.slice';
+import userReducer from './user/user.slice';
 import alertReducer from './alert/alert.slice';
 import themeReducer from './theme/theme.slice';
 import rootSaga from './rootSaga';
@@ -10,6 +11,7 @@ const sagaMiddleware = createSagaMiddleware();
 export const store = configureStore({
   reducer: {
     auth: authReducer,
+    user: userReducer,
     alert: alertReducer,
     theme: themeReducer,
   },

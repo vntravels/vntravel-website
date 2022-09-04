@@ -10,6 +10,7 @@ import VTAlert from 'src/components/Alert';
 import customTheme from 'src/styles/theme/createTheme';
 import createEmotionCache from 'src/utils/createEmotionCache';
 import config from 'src/utils/config';
+import AuthWrapper from 'src/layouts/AuthWrapper';
 import '../styles/global.scss';
 
 const emotionCache = createEmotionCache();
@@ -21,8 +22,10 @@ function MyApp({ Component, pageProps }: AppProps) {
         <ThemeProvider theme={customTheme()}>
           <LocalizationProvider dateAdapter={AdapterMoment}>
             <GoogleOAuthProvider clientId={config.GOOGLE_CLIENT_ID}>
-              <VTAlert />
-              <Component {...pageProps} />
+              <AuthWrapper>
+                <VTAlert />
+                <Component {...pageProps} />
+              </AuthWrapper>
             </GoogleOAuthProvider>
           </LocalizationProvider>
         </ThemeProvider>

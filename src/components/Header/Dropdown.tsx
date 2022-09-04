@@ -17,8 +17,9 @@ import {
   LogoutOutlined,
   ManageAccountsOutlined,
 } from '@mui/icons-material';
-import { useAppDispatch } from 'src/common/redux/hooks';
+import { useAppDispatch, useAppSelector } from 'src/common/redux/hooks';
 import { logout } from 'src/common/redux/auth/auth.slice';
+import { selectUserProfile } from 'src/common/redux/user/user.slice';
 
 const useStyles = makeStyles((theme: Theme) => ({
   AvatarDropdown: {
@@ -60,6 +61,8 @@ const useStyles = makeStyles((theme: Theme) => ({
 const HeaderDropdown = () => {
   const classes = useStyles();
   const dispatch = useAppDispatch();
+  const userProfile = useAppSelector(selectUserProfile);
+
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -81,12 +84,12 @@ const HeaderDropdown = () => {
           <Avatar
             sx={{ width: '36px', height: '36px' }}
             alt="Remy Sharp"
-            src="/static/images/avatar/1.jpg"
+            src={userProfile.avatarUrl}
           />
         }
       >
         <Typography variant="subtitle2" color="black" textTransform={'none'}>
-          Lam Tung
+          {userProfile.userName || "Null"}
         </Typography>
       </Button>
 
