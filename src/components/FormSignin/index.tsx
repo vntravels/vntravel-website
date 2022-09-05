@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import Link from 'next/link';
-import * as Yup from 'yup';
 import { Formik } from 'formik';
 import { useGoogleLogin } from '@react-oauth/google';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
@@ -40,11 +39,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const validationSchema = Yup.object().shape({
-  email: Yup.string().required('Email is required!').email('Invalid email!'),
-  password: Yup.string().required('Password is required!'),
-});
-
 const FormSignin = () => {
   const classes = useStyles();
   const dispatch = useAppDispatch();
@@ -80,7 +74,6 @@ const FormSignin = () => {
       <Box sx={{ mt: 2 }}>
         <Formik
           initialValues={{ email: '', password: '' }}
-          validationSchema={validationSchema}
           onSubmit={(values, { setSubmitting }) => {
             dispatch(setSigninData(values));
             setTimeout(() => {
@@ -88,22 +81,13 @@ const FormSignin = () => {
             }, 1000);
           }}
         >
-          {({
-            values,
-            errors,
-            touched,
-            handleChange,
-            handleSubmit,
-            isSubmitting,
-          }) => (
+          {({ values, handleChange, handleSubmit, isSubmitting }) => (
             <Box component="form">
               <VTFormInput
                 id="outlined-adornment-email-login"
-                isError={Boolean(touched.email && errors.email)}
                 type="email"
                 name="email"
                 label="Email Address / Username"
-                errorMessage={errors.email}
                 value={values.email}
                 onChange={handleChange}
               />
@@ -112,21 +96,23 @@ const FormSignin = () => {
                 id="outlined-adornment-password-login"
                 label="Password"
                 name="password"
-                isError={Boolean(touched.password && errors.password)}
                 type={showPassword ? 'text' : 'password'}
                 value={values.password}
                 onChange={handleChange}
                 endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                      edge="end"
-                    >
-                      {showPassword ? <Visibility /> : <VisibilityOff />}
-                    </IconButton>
-                  </InputAdornment>
+                  values.password ? (
+                    <InputAdornment position="end">
+                      <IconButton
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        disableTouchRipple
+                      >
+                        {showPassword ? <Visibility /> : <VisibilityOff />}
+                      </IconButton>
+                    </InputAdornment>
+                  ) : (
+                    <></>
+                  )
                 }
               />
 

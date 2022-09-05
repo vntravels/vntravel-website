@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 type VTFormInputProps = {
   id: string;
-  isError: boolean;
+  isError?: boolean;
   type: string;
   errorMessage?: string;
   value: any;
@@ -74,11 +74,7 @@ const VTFormInput = ({
         endAdornment={endAdornment}
         label={label}
       />
-      {isError && (
-        <FormHelperText component="p" sx={{ marginLeft: 0 }}>
-          {errorMessage}
-        </FormHelperText>
-      )}
+      {isError && <FormHelperText component="p">{errorMessage}</FormHelperText>}
     </FormControl>
   );
 };
