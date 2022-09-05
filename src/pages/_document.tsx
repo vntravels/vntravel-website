@@ -3,6 +3,7 @@ import Document, { Html, Head, Main, NextScript } from 'next/document';
 import React from 'react';
 
 export default class MyDocument extends Document {
+  // eslint-disable-next-line no-unused-vars
   static getInitialProps: (ctx: any) => Promise<any>;
   render() {
     return (

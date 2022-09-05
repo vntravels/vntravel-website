@@ -8,7 +8,8 @@ import {
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
-const useStyles = makeStyles((theme: Theme) => ({
+// eslint-disable-next-line no-unused-vars
+const useStyles = makeStyles((_theme: Theme) => ({
   Autocomplete: {
     '& .MuiOutlinedInput-root': {
       borderRadius: 10,

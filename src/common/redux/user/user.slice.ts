@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import type { RootState } from '../store';
 
 // declaring the types for our state
@@ -16,13 +16,13 @@ export type UserState = {
 
 const initialState: UserState = {
   userProfile: {
-    firstName: 'string',
-    lastName: 'string',
-    userName: 'string',
-    email: 'string',
-    dateOfBirth: 'string',
-    gender: 'string',
-    avatarUrl: 'string',
+    firstName: '',
+    lastName: '',
+    userName: '',
+    email: '',
+    dateOfBirth: '',
+    gender: '',
+    avatarUrl: '',
   },
 };
 

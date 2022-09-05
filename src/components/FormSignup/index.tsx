@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
@@ -18,13 +18,8 @@ import {
 } from '@mui/material';
 
 import VTFormInput from '../Form/FormInput';
-import { useAppDispatch, useAppSelector } from '@/common/redux/hooks';
-import {
-  selectIsLogin,
-  setSigninData,
-  setSignupData,
-} from '@/common/redux/auth/auth.slice';
-import { useRouter } from 'next/router';
+import { useAppDispatch } from '@/common/redux/hooks';
+import { setSignupData } from '@/common/redux/auth/auth.slice';
 import VTSubmitButton from '../Form/SubmitButton';
 import VTSocialButton from '../Form/SocialButton';
 import config from '@/utils/config';
@@ -55,8 +50,6 @@ const validationSchema = Yup.object().shape({
 const FormSignup = () => {
   const classes = useStyles();
   const dispatch = useAppDispatch();
-  const router = useRouter();
-  const isLogin = useAppSelector(selectIsLogin);
 
   const [checked, setChecked] = React.useState<boolean>(false);
   const [showPassword, setShowPassword] = React.useState<boolean>(false);

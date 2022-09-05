@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Theme, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import DatePicker, { ReactDatePickerProps } from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 
+// eslint-disable-next-line no-unused-vars
 const useStyles = makeStyles((_theme: Theme) => ({
   Root: {
     background: '#F7F7F7',

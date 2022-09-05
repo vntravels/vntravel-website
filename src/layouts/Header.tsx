@@ -23,7 +23,8 @@ import HeaderDropdown from '@/components/Header/Dropdown';
 import { NotificationsNoneOutlined } from '@mui/icons-material';
 import Link from 'next/link';
 
-const useStyles = makeStyles((theme: Theme) => ({
+// eslint-disable-next-line no-unused-vars
+const useStyles = makeStyles((_theme: Theme) => ({
   Root: {
     position: 'fixed',
     width: '100%',

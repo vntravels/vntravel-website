@@ -13,7 +13,7 @@ import {
   useMediaQuery,
   useTheme,
 } from '@mui/material';
-import FormSignin from '@/components/Auth/FormSignin';
+import FormSignin from '@/components/FormSignin';
 import Footer from '@/layouts/Footer';
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -55,7 +55,7 @@ const Signin = () => {
   return (
     <>
       <Head>
-        <title>VnTravel | Signin</title>
+        <title>VnTravel | Sign In</title>
       </Head>
       <Box className={classes.Root}>
         <Grid container sx={{ height: '100%' }}>

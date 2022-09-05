@@ -9,7 +9,7 @@ const Home: NextPage = () => {
     <Layout>
       <Head>
         <title>VnTravel</title>
-        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <Banner />
       <Booking />

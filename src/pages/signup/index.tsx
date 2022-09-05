@@ -14,7 +14,7 @@ import {
   useTheme,
 } from '@mui/material';
 import Footer from '@/layouts/Footer';
-import FormSignup from '@/components/Auth/FormSignup';
+import FormSignup from '@/components/FormSignup';
 
 const useStyles = makeStyles((theme: Theme) => ({
   Root: {
@@ -55,7 +55,7 @@ const Signup = () => {
   return (
     <>
       <Head>
-        <title>VnTravel | Signup</title>
+        <title>VnTravel | Sign Up</title>
       </Head>
       <Box className={classes.Root}>
         <Grid container sx={{ height: '100%' }}>

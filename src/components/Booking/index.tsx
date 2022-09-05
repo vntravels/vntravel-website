@@ -18,6 +18,7 @@ import FlightBooking from './FlightBooking';
 import HotelBooking from './HotelBooking';
 import CarBooking from './CarBooking';
 
+// eslint-disable-next-line no-unused-vars
 const useStyles = makeStyles((_theme: Theme) => ({
   Root: {
     margin: '0 auto',

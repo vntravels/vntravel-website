@@ -1,8 +1,9 @@
 import React from 'react';
-import { Autocomplete, InputAdornment, TextField, Theme } from '@mui/material';
+import { InputAdornment, TextField, Theme } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
-const useStyles = makeStyles((theme: Theme) => ({
+// eslint-disable-next-line no-unused-vars
+const useStyles = makeStyles((_theme: Theme) => ({
   TextInput: {
     background: '#F7F7F7',
     width: '100%',
