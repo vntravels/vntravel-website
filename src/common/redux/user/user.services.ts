@@ -1,4 +1,4 @@
-import config from 'src/utils/config';
+import config from '@/utils/config';
 import AxiosInstance from '../../axiosInstance';
 
 export const getMe = async (): Promise<any> => {

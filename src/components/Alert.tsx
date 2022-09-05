@@ -1,11 +1,11 @@
 import React from 'react';
 import { Alert, Collapse } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import { useAppDispatch, useAppSelector } from 'src/common/redux/hooks';
+import { useAppDispatch, useAppSelector } from '@/common/redux/hooks';
 import {
   selectAlertState,
   setAlertState,
-} from 'src/common/redux/alert/alert.slice';
+} from '@/common/redux/alert/alert.slice';
 
 const useStyles = makeStyles(() => ({
   Alert: {

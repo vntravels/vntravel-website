@@ -5,12 +5,12 @@ import { Provider } from 'react-redux';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import { store } from 'src/common/redux/store';
-import VTAlert from 'src/components/Alert';
-import customTheme from 'src/styles/theme/createTheme';
-import createEmotionCache from 'src/utils/createEmotionCache';
-import config from 'src/utils/config';
-import AuthWrapper from 'src/layouts/AuthWrapper';
+import { store } from '@/common/redux/store';
+import VTAlert from '@/components/Alert';
+import customTheme from '@/styles/theme/createTheme';
+import createEmotionCache from '@/utils/createEmotionCache';
+import config from '@/utils/config';
+import AuthWrapper from '@/layouts/AuthWrapper';
 import '../styles/global.scss';
 
 const emotionCache = createEmotionCache();

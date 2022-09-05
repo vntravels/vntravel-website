@@ -18,17 +18,17 @@ import {
 } from '@mui/material';
 
 import VTFormInput from '../Form/FormInput';
-import { useAppDispatch, useAppSelector } from 'src/common/redux/hooks';
+import { useAppDispatch, useAppSelector } from '@/common/redux/hooks';
 import {
   selectIsLogin,
   setSigninData,
   setSignupData,
-} from 'src/common/redux/auth/auth.slice';
+} from '@/common/redux/auth/auth.slice';
 import { useRouter } from 'next/router';
 import VTSubmitButton from '../Form/SubmitButton';
 import VTSocialButton from '../Form/SocialButton';
-import config from 'src/utils/config';
-import AxiosInstance from 'src/common/axiosInstance';
+import config from '@/utils/config';
+import AxiosInstance from '@/common/axiosInstance';
 
 const useStyles = makeStyles((theme: Theme) => ({
   SignDivider: {

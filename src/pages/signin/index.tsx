@@ -3,8 +3,7 @@ import Link from 'next/link';
 import { makeStyles } from '@mui/styles';
 import Head from 'next/head';
 
-// project imports
-import Logo from 'src/components/Logo';
+import Logo from '@/components/Logo';
 import {
   Box,
   Grid,
@@ -14,8 +13,8 @@ import {
   useMediaQuery,
   useTheme,
 } from '@mui/material';
-import FormSignin from 'src/components/Auth/FormSignin';
-import Footer from 'src/layouts/Footer';
+import FormSignin from '@/components/Auth/FormSignin';
+import Footer from '@/layouts/Footer';
 
 const useStyles = makeStyles((theme: Theme) => ({
   Root: {

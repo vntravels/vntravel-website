@@ -76,7 +76,9 @@ const Banner = () => {
         <Typography className={classes.BannerTitle}>
           Amazing Flight To <br /> Viet Nam
         </Typography>
-        <Typography className={classes.BannerDescription}>Find and book hotel for great trip</Typography>
+        <Typography className={classes.BannerDescription}>
+          Find and book hotel for great trip
+        </Typography>
       </Box>
     </Box>
   );

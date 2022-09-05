@@ -17,9 +17,9 @@ import {
   LogoutOutlined,
   ManageAccountsOutlined,
 } from '@mui/icons-material';
-import { useAppDispatch, useAppSelector } from 'src/common/redux/hooks';
-import { logout } from 'src/common/redux/auth/auth.slice';
-import { selectUserProfile } from 'src/common/redux/user/user.slice';
+import { useAppDispatch, useAppSelector } from '@/common/redux/hooks';
+import { logout } from '@/common/redux/auth/auth.slice';
+import { selectUserProfile } from '@/common/redux/user/user.slice';
 
 const useStyles = makeStyles((theme: Theme) => ({
   AvatarDropdown: {

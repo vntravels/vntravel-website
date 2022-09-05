@@ -16,10 +16,10 @@ import {
 } from '@mui/material';
 import { useRouter } from 'next/router';
 
-import Logo from 'src/components/Logo';
-import { useAppSelector } from 'src/common/redux/hooks';
-import { selectIsLogin } from 'src/common/redux/auth/auth.slice';
-import HeaderDropdown from 'src/components/Header/Dropdown';
+import Logo from '@/components/Logo';
+import { useAppSelector } from '@/common/redux/hooks';
+import { selectIsLogin } from '@/common/redux/auth/auth.slice';
+import HeaderDropdown from '@/components/Header/Dropdown';
 import { NotificationsNoneOutlined } from '@mui/icons-material';
 import Link from 'next/link';
 

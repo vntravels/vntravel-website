@@ -19,13 +19,11 @@ import {
 } from '@mui/material';
 
 import VTFormInput from '../Form/FormInput';
-import { useAppDispatch, useAppSelector } from 'src/common/redux/hooks';
-import { selectIsLogin, setSigninData } from 'src/common/redux/auth/auth.slice';
+import { useAppDispatch, useAppSelector } from '@/common/redux/hooks';
+import { selectIsLogin, setSigninData } from '@/common/redux/auth/auth.slice';
 import { useRouter } from 'next/router';
 import VTSubmitButton from '../Form/SubmitButton';
 import VTSocialButton from '../Form/SocialButton';
-import config from 'src/utils/config';
-import AxiosInstance from 'src/common/axiosInstance';
 
 const useStyles = makeStyles((theme: Theme) => ({
   SignDivider: {
@@ -47,7 +45,7 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required('Password is required!'),
 });
 
-const FormLogin = () => {
+const FormSignin = () => {
   const classes = useStyles();
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -240,4 +238,4 @@ const FormLogin = () => {
   );
 };
 
-export default FormLogin;
+export default FormSignin;

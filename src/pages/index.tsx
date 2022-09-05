@@ -1,8 +1,8 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Banner from 'src/components/Banner';
-import Booking from 'src/components/Booking';
-import Layout from 'src/layouts';
+import Banner from '@/components/Banner';
+import Booking from '@/components/Booking';
+import Layout from '@/layouts';
 
 const Home: NextPage = () => {
   return (
