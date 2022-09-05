@@ -15,6 +15,10 @@
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
     "react/no-unescaped-entities": "off",
-    "react/display-name": "off"
+    "react/display-name": "off",
+    "no-unused-vars": [
+      "warn",
+      { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }
+    ]
   }
 }
