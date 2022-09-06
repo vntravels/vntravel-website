@@ -3,8 +3,6 @@ import type { NextPage } from 'next';
 import Link from 'next/link';
 import { makeStyles } from '@mui/styles';
 import Head from 'next/head';
-
-import Logo from '@/components/Logo';
 import {
   Box,
   Grid,
@@ -14,6 +12,8 @@ import {
   useMediaQuery,
   useTheme,
 } from '@mui/material';
+
+import Logo from '@/components/Logo';
 import Footer from '@/layouts/Footer';
 import FormSignup from '@/components/FormSignup';
 

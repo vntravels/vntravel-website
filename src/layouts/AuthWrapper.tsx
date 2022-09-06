@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+
 import { useAppDispatch } from '@/common/redux/hooks';
 import { getUserProfile } from '@/common/redux/user/user.slice';
 

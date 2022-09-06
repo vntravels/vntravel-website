@@ -17,11 +17,11 @@ import {
   Typography,
 } from '@mui/material';
 
-import VTFormInput from '../Form/FormInput';
+import VTFormInput from '@/components/Form/FormInput';
+import VTSubmitButton from '@/components/Form/SubmitButton';
+import VTSocialButton from '@/components/Form/SocialButton';
 import { useAppDispatch } from '@/common/redux/hooks';
 import { setSigninData } from '@/common/redux/auth/auth.slice';
-import VTSubmitButton from '../Form/SubmitButton';
-import VTSocialButton from '../Form/SocialButton';
 
 const useStyles = makeStyles((theme: Theme) => ({
   SignDivider: {

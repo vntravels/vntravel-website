@@ -1,11 +1,12 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import { Grid } from '@mui/material';
+
 import Banner from '@/components/Banner';
 import Booking from '@/components/Booking';
 import Layout from '@/layouts';
 import SectionTitle from '@/components/Section/SectionTitle';
 import SectionContainer from '@/components/Section/SectionContainer';
-import { Grid } from '@mui/material';
 import VTCard from '@/components/Card';
 import SectionContent from '@/components/Section/SectionContent';
 

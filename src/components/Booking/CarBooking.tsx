@@ -4,8 +4,8 @@ import Image from 'next/image';
 import { makeStyles } from '@mui/styles';
 import { LocationOnOutlined } from '@mui/icons-material';
 
-import VTAutocomplete from '../Form/Autocomplete';
-import VTDatePicker from '../Form/DatePicker';
+import VTAutocomplete from '@/components/Form/Autocomplete';
+import VTDatePicker from '@/components/Form/DatePicker';
 
 import 'react-datepicker/dist/react-datepicker.css';
 

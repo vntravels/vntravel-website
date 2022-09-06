@@ -3,13 +3,14 @@ import { ThemeProvider } from '@mui/material';
 import type { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
 import { GoogleOAuthProvider } from '@react-oauth/google';
+
 import { store } from '@/common/redux/store';
 import VTAlert from '@/components/Alert';
 import customTheme from '@/styles/theme/createTheme';
 import createEmotionCache from '@/utils/createEmotionCache';
 import config from '@/utils/config';
 import AuthWrapper from '@/layouts/AuthWrapper';
-import '../styles/global.scss';
+import '@/styles/global.scss';
 
 const emotionCache = createEmotionCache();
 

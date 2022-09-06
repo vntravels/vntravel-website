@@ -3,8 +3,6 @@ import type { NextPage } from 'next';
 import Link from 'next/link';
 import { makeStyles } from '@mui/styles';
 import Head from 'next/head';
-
-import Logo from '@/components/Logo';
 import {
   Box,
   Grid,
@@ -14,9 +12,11 @@ import {
   useMediaQuery,
   useTheme,
 } from '@mui/material';
+import { useRouter } from 'next/router';
+
+import Logo from '@/components/Logo';
 import FormSignin from '@/components/FormSignin';
 import Footer from '@/layouts/Footer';
-import { useRouter } from 'next/router';
 import { useAppSelector } from '@/common/redux/hooks';
 import { selectIsLogin } from '@/common/redux/auth/auth.slice';
 
