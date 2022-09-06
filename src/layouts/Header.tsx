@@ -29,6 +29,7 @@ const useStyles = makeStyles((_theme: Theme) => ({
     position: 'fixed',
     width: '100%',
     background: '#ffffff',
+    zIndex: 1000,
   },
 
   Header: {

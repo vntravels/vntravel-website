@@ -38,6 +38,13 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: theme.palette.grey[900] + '!important',
     fontWeight: 500,
   },
+
+  TermCondition: {
+    '& a': {
+      fontWeight: 400,
+      cursor: 'pointer',
+    },
+  },
 }));
 
 const validationSchema = Yup.object().shape({
@@ -155,6 +162,7 @@ const FormSignup = () => {
                   values.password ? (
                     <InputAdornment position="end">
                       <IconButton
+                        edge="end"
                         onClick={handleClickShowPassword}
                         onMouseDown={handleMouseDownPassword}
                         disableTouchRipple
@@ -184,8 +192,11 @@ const FormSignup = () => {
                       />
                     }
                     label={
-                      <Typography variant="subtitle1">
-                        Agree with &nbsp;
+                      <Typography
+                        className={classes.TermCondition}
+                        variant="subtitle1"
+                      >
+                        Agree with&nbsp;
                         <Typography
                           variant="subtitle1"
                           component={Link}

@@ -1,4 +1,5 @@
 import React from 'react';
+import type { NextPage } from 'next';
 import Link from 'next/link';
 import { makeStyles } from '@mui/styles';
 import Head from 'next/head';
@@ -45,9 +46,20 @@ const useStyles = makeStyles((theme: Theme) => ({
       padding: theme.spacing(3) + ' !important',
     },
   },
+
+  LinkSignin: {
+    textAlign: 'center',
+
+    '& a': {
+      marginLeft: theme.spacing(1),
+      fontWeight: 400,
+      textDecoration: 'none',
+      cursor: 'pointer',
+    },
+  },
 }));
 
-const Signup = () => {
+const Signup: NextPage = () => {
   const classes = useStyles();
   const theme = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down('sm'));
@@ -101,26 +113,22 @@ const Signup = () => {
                             </Typography>
                           </Stack>
                         </Grid>
-                        <Grid item xs={12}>
-                          <Grid item container justifyContent="center" xs={12}>
-                            <Typography
-                              component={'span'}
-                              variant="subtitle1"
-                              color="grey"
-                            >
-                              Have an account?
-                            </Typography>
-                            <Link href={'/signin'}>
-                              <Typography
-                                component={'span'}
-                                variant="subtitle1"
-                                color="secondary"
-                                sx={{ marginLeft: 1, cursor: 'pointer' }}
-                              >
-                                Click here.
-                              </Typography>
-                            </Link>
-                          </Grid>
+                        <Grid className={classes.LinkSignin} item xs={12}>
+                          <Typography
+                            component={'span'}
+                            variant="subtitle1"
+                            color="grey"
+                          >
+                            Have an account?
+                          </Typography>
+                          <Typography
+                            variant="subtitle1"
+                            color="secondary"
+                            component={Link}
+                            href={'/signin'}
+                          >
+                            Click here.
+                          </Typography>
                         </Grid>
                       </Grid>
                     </Grid>

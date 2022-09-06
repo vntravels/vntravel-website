@@ -22,11 +22,11 @@ import CarBooking from './CarBooking';
 const useStyles = makeStyles((_theme: Theme) => ({
   Root: {
     margin: '0 auto',
-    padding: '0 20px',
+    padding: 0,
+    paddingBottom: 50,
     marginTop: -95,
-    maxWidth: 1300,
+    maxWidth: 1240,
     filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1))',
-    position: 'relative',
   },
 
   BookingContainer: {
