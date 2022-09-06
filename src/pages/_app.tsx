@@ -2,8 +2,6 @@ import { CacheProvider } from '@emotion/react';
 import { ThemeProvider } from '@mui/material';
 import type { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { store } from '@/common/redux/store';
 import VTAlert from '@/components/Alert';
@@ -20,14 +18,12 @@ function MyApp({ Component, pageProps }: AppProps) {
     <CacheProvider value={emotionCache}>
       <Provider store={store}>
         <ThemeProvider theme={customTheme()}>
-          <LocalizationProvider dateAdapter={AdapterMoment}>
-            <GoogleOAuthProvider clientId={config.GOOGLE_CLIENT_ID}>
-              <AuthWrapper>
-                <VTAlert />
-                <Component {...pageProps} />
-              </AuthWrapper>
-            </GoogleOAuthProvider>
-          </LocalizationProvider>
+          <GoogleOAuthProvider clientId={config.GOOGLE_CLIENT_ID}>
+            <AuthWrapper>
+              <VTAlert />
+              <Component {...pageProps} />
+            </AuthWrapper>
+          </GoogleOAuthProvider>
         </ThemeProvider>
       </Provider>
     </CacheProvider>
