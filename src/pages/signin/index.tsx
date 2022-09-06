@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import type { NextPage } from 'next';
 import Link from 'next/link';
 import { makeStyles } from '@mui/styles';
 import Head from 'next/head';
@@ -15,6 +16,9 @@ import {
 } from '@mui/material';
 import FormSignin from '@/components/FormSignin';
 import Footer from '@/layouts/Footer';
+import { useRouter } from 'next/router';
+import { useAppSelector } from '@/common/redux/hooks';
+import { selectIsLogin } from '@/common/redux/auth/auth.slice';
 
 const useStyles = makeStyles((theme: Theme) => ({
   Root: {
@@ -45,12 +49,31 @@ const useStyles = makeStyles((theme: Theme) => ({
       padding: theme.spacing(3) + ' !important',
     },
   },
+
+  LinkSignup: {
+    textAlign: 'center',
+
+    '& a': {
+      marginLeft: theme.spacing(1),
+      fontWeight: 400,
+      textDecoration: 'none',
+      cursor: 'pointer',
+    },
+  },
 }));
 
-const Signin = () => {
+const Signin: NextPage = () => {
   const classes = useStyles();
   const theme = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down('sm'));
+  const router = useRouter();
+  const isLogin = useAppSelector(selectIsLogin);
+
+  useEffect(() => {
+    if (isLogin) {
+      router.replace('/');
+    }
+  }, [isLogin, router]);
 
   return (
     <>
@@ -75,6 +98,14 @@ const Signin = () => {
                     justifyContent="center"
                   >
                     <Grid item sx={{ mb: 3 }}>
+                      <Typography
+                        variant="subtitle2"
+                        color="secondary"
+                        component={Link}
+                        href={'/forgot-password'}
+                      >
+                        <Logo />
+                      </Typography>
                       <Link href="/">
                         <Logo />
                       </Link>
@@ -101,26 +132,22 @@ const Signin = () => {
                             </Typography>
                           </Stack>
                         </Grid>
-                        <Grid item xs={12}>
-                          <Grid item container justifyContent="center" xs={12}>
-                            <Typography
-                              component={'span'}
-                              variant="subtitle1"
-                              color="grey"
-                            >
-                              Don't have an account?
-                            </Typography>
-                            <Link href={'/signup'}>
-                              <Typography
-                                component={'span'}
-                                variant="subtitle1"
-                                color="secondary"
-                                sx={{ marginLeft: 1, cursor: 'pointer' }}
-                              >
-                                Click here.
-                              </Typography>
-                            </Link>
-                          </Grid>
+                        <Grid className={classes.LinkSignup} item xs={12}>
+                          <Typography
+                            component={'span'}
+                            variant="subtitle1"
+                            color="grey"
+                          >
+                            Don't have an account?
+                          </Typography>
+                          <Typography
+                            variant="subtitle1"
+                            color="secondary"
+                            component={Link}
+                            href={'/signup'}
+                          >
+                            Click here.
+                          </Typography>
                         </Grid>
                       </Grid>
                     </Grid>

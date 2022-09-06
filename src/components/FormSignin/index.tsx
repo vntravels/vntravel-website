@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { Formik } from 'formik';
 import { useGoogleLogin } from '@react-oauth/google';
@@ -18,9 +18,8 @@ import {
 } from '@mui/material';
 
 import VTFormInput from '../Form/FormInput';
-import { useAppDispatch, useAppSelector } from '@/common/redux/hooks';
-import { selectIsLogin, setSigninData } from '@/common/redux/auth/auth.slice';
-import { useRouter } from 'next/router';
+import { useAppDispatch } from '@/common/redux/hooks';
+import { setSigninData } from '@/common/redux/auth/auth.slice';
 import VTSubmitButton from '../Form/SubmitButton';
 import VTSocialButton from '../Form/SocialButton';
 
@@ -37,19 +36,22 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: theme.palette.grey[900] + '!important',
     fontWeight: 500,
   },
+
+  Stack: {
+    alignItems: 'center',
+    justifyContent: 'space-between',
+
+    '& a': {
+      fontWeight: 400,
+      textDecoration: 'none',
+      cursor: 'pointer',
+    },
+  },
 }));
 
 const FormSignin = () => {
   const classes = useStyles();
   const dispatch = useAppDispatch();
-  const router = useRouter();
-  const isLogin = useAppSelector(selectIsLogin);
-
-  useEffect(() => {
-    if (isLogin) {
-      router.push('/');
-    }
-  }, [isLogin, router]);
 
   const [checked, setChecked] = React.useState(true);
   const [showPassword, setShowPassword] = React.useState(false);
@@ -103,6 +105,7 @@ const FormSignin = () => {
                   values.password ? (
                     <InputAdornment position="end">
                       <IconButton
+                        edge="end"
                         onClick={handleClickShowPassword}
                         onMouseDown={handleMouseDownPassword}
                         disableTouchRipple
@@ -116,12 +119,7 @@ const FormSignin = () => {
                 }
               />
 
-              <Stack
-                direction="row"
-                alignItems="center"
-                justifyContent="space-between"
-                spacing={1}
-              >
+              <Stack direction="row" spacing={1} className={classes.Stack}>
                 <FormControlLabel
                   control={
                     <Checkbox
@@ -133,15 +131,14 @@ const FormSignin = () => {
                   }
                   label="Remember me"
                 />
-                <Link href={'/forgot-password'}>
-                  <Typography
-                    variant="subtitle2"
-                    color="secondary"
-                    sx={{ textDecoration: 'none', cursor: 'pointer' }}
-                  >
-                    Forgot Password?
-                  </Typography>
-                </Link>
+                <Typography
+                  variant="subtitle2"
+                  color="secondary"
+                  component={Link}
+                  href={'/forgot-password'}
+                >
+                  Forgot Password?
+                </Typography>
               </Stack>
               <VTSubmitButton
                 isSubmitting={isSubmitting}
