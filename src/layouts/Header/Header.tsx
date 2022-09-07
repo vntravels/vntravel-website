@@ -76,16 +76,20 @@ const useStyles = makeStyles((_theme: Theme) => ({
     },
   },
 
-  ButtonSignUp: {
+  ButtonSignIn: {
     marginLeft: 12,
     color: '#132150',
     textTransform: 'none',
     fontWeight: 500,
     fontSize: 16,
+
+    '&:hover': {
+      textDecoration: 'underline',
+    },
   },
 
-  ButtonSignIn: {
-    marginLeft: 12,
+  ButtonSignUp: {
+    marginLeft: 6,
     width: 140,
     background: '#438BF7',
     borderRadius: 10,
@@ -209,17 +213,18 @@ const Header = () => {
             ) : (
               <>
                 <Button
-                  className={classes.ButtonSignUp}
-                  onClick={() => router.push('/signup')}
-                >
-                  Sign up
-                </Button>
-                <Button
-                  variant="contained"
                   className={classes.ButtonSignIn}
                   onClick={() => router.push('/signin')}
+                  disableRipple
                 >
                   Sign in
+                </Button>
+                <Button
+                  onClick={() => router.push('/signup')}
+                  variant="contained"
+                  className={classes.ButtonSignUp}
+                >
+                  Sign up
                 </Button>
               </>
             )}

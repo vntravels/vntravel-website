@@ -10,7 +10,7 @@ import {
   SectionTitle,
   SectionContent,
 } from '@/components/Section';
-import VTCard from '@/components/Card';
+import { VTCard, VTCardImage, VTCardTrending } from '@/components/Card';
 
 const Home: NextPage = () => {
   return (
@@ -21,6 +21,7 @@ const Home: NextPage = () => {
       </Head>
       <Banner />
       <Booking />
+
       <SectionContainer>
         <SectionTitle
           title="Find a best place in Viet Nam"
@@ -46,6 +47,96 @@ const Home: NextPage = () => {
               <VTCard
                 title="Lizard"
                 description="Test"
+                image="images/hanoi.png"
+              />
+            </Grid>
+          </Grid>
+        </SectionContent>
+      </SectionContainer>
+
+      <SectionContainer>
+        <SectionTitle
+          title="Featured Destinations"
+          description="Popular destinations open to visitors from Viet Nam"
+        />
+        <SectionContent>
+          <Grid container spacing={3}>
+            <Grid item xs={9}>
+              <Grid container spacing={3}>
+                <Grid item xs={6}>
+                  <VTCardImage
+                    width={484}
+                    height={427}
+                    image="images/nhatrang2.png"
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <VTCardImage
+                    width={484}
+                    height={427}
+                    image="images/phuquoc.png"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <VTCardImage
+                    width={1012}
+                    height={424}
+                    image="images/nhatrang.png"
+                  />
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid item xs={3}>
+              <Grid container spacing={3}>
+                <Grid item xs={12}>
+                  <VTCardImage
+                    width={291}
+                    height={275}
+                    image="images/hanoi.png"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <VTCardImage
+                    width={291}
+                    height={275}
+                    image="images/hanoi.png"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <VTCardImage
+                    width={291}
+                    height={275}
+                    image="images/hanoi.png"
+                  />
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+        </SectionContent>
+      </SectionContainer>
+
+      <SectionContainer>
+        <SectionTitle
+          title="Find a best place in Viet Nam"
+          description="Whether you’ve looking for places for a vacation. We are here to Guide you about the details you need to check in"
+        />
+        <SectionContent>
+          <Grid container spacing={3}>
+            <Grid item xs={6}>
+              <VTCardTrending
+                title="Flight to Nha Trang"
+                price="250.000"
+                rating={2}
+                currency="VND"
+                image="images/hanoi.png"
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <VTCardTrending
+                title="Flight to Nha Trang"
+                price="250.000"
+                rating={2}
+                currency="VND"
                 image="images/hanoi.png"
               />
             </Grid>

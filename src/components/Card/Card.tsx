@@ -7,11 +7,17 @@ const useStyles = makeStyles(() => ({
     padding: 24,
     border: '1px solid #D6D2D2',
     boxShadow: 'none',
-    borderRadius: 10,
+    borderRadius: 24,
+
+    '&:hover': {
+      cursor: 'pointer',
+      boxShadow:
+        '0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%)',
+    },
   },
 
   CardMedia: {
-    borderRadius: 10,
+    borderRadius: 24,
   },
 
   CardContent: {

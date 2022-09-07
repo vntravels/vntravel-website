@@ -1,6 +1,8 @@
 import { createTheme } from '@mui/material/styles';
-import { themePalette } from './themePalette';
+
 import colors from '../_themes-vars.module.scss';
+
+import { themePalette } from './themePalette';
 
 const customTheme = (customization?: any) => {
   const fontFamily = ['Poppins', 'sans-serif'].join(',');
@@ -34,7 +36,7 @@ const customTheme = (customization?: any) => {
         fontSize: '24px',
       },
       h3: {
-        fontWeight: 700,
+        fontWeight: 600,
         fontSize: '22px',
       },
       h4: {
