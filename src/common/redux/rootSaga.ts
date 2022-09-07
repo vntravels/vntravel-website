@@ -1,5 +1,6 @@
-import { logoutSaga, signinSaga, signupSaga } from './auth/auth.saga';
 import { all, takeEvery } from 'redux-saga/effects';
+
+import { logoutSaga, signinSaga, signupSaga } from './auth/auth.saga';
 import { logout, setSigninData, setSignupData } from './auth/auth.slice';
 import { getUserProfile } from './user/user.slice';
 import { getMeSaga } from './user/user.saga';

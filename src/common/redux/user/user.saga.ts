@@ -1,8 +1,10 @@
 import { call, put } from 'redux-saga/effects';
-import { setAlertState } from '../alert/alert.slice';
-import { setIsLogin } from '../auth/auth.slice';
+
 import { getMe } from './user.services';
 import { setUserProfile } from './user.slice';
+
+import { setAlertState } from '@/common/redux/common/common.slice';
+import { setIsLogin } from '@/common/redux/auth/auth.slice';
 
 export function* getMeSaga(): any {
   try {

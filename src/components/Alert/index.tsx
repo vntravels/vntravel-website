@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '@/common/redux/hooks';
 import {
   selectAlertState,
   setAlertState,
-} from '@/common/redux/alert/alert.slice';
+} from '@/common/redux/common/common.slice';
 
 const useStyles = makeStyles(() => ({
   Alert: {

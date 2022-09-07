@@ -1,5 +1,5 @@
 import config from '@/utils/config';
-import AxiosInstance from '../../axiosInstance';
+import AxiosInstance from '@/common/axiosInstance';
 
 export const getMe = async (): Promise<any> => {
   const { data } = await AxiosInstance.get(

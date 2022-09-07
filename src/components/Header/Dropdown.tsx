@@ -90,7 +90,7 @@ const HeaderDropdown = () => {
         }
       >
         <Typography variant="subtitle2" color="black" textTransform={'none'}>
-          {userProfile.userName || "null"}
+          {userProfile.userName || 'null'}
         </Typography>
       </Button>
 

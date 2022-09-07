@@ -1,5 +1,5 @@
 import config from '@/utils/config';
-import AxiosInstance from '../../axiosInstance';
+import AxiosInstance from '@/common/axiosInstance';
 
 export const signin = async (payload: any): Promise<any> => {
   const { data } = await AxiosInstance.post(

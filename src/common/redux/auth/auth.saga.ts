@@ -1,9 +1,11 @@
 import { call, put } from 'redux-saga/effects';
-import { setAlertState } from '../alert/alert.slice';
-import { getMe } from '../user/user.services';
-import { setUserProfile } from '../user/user.slice';
+
 import { logout, signin, signup } from './auth.services';
 import { setIsLogin, setSignupResponse } from './auth.slice';
+
+import { setAlertState } from '@/common/redux/common/common.slice';
+import { getMe } from '@/common/redux/user/user.services';
+import { setUserProfile } from '@/common/redux/user/user.slice';
 
 export function* signinSaga(action: any): any {
   try {

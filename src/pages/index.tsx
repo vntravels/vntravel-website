@@ -115,7 +115,7 @@ const Home: NextPage = () => {
         </SectionContent>
       </SectionContainer>
 
-      <SectionContainer>
+      <SectionContainer backgroundColor="#F2F3F3">
         <SectionTitle
           title="Find a best place in Viet Nam"
           description="Whether you’ve looking for places for a vacation. We are here to Guide you about the details you need to check in"
