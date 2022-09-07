@@ -7,6 +7,10 @@ const nextConfig = {
     includePaths: [path.join(__dirname, '@/styles')],
   },
   swcMinify: true,
+  compiler: {
+    // Enables the styled-components SWC transform
+    styledComponents: true,
+  },
   env: {
     API_ENDPOINT_URL: process.env.API_ENDPOINT_URL,
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
