@@ -21,7 +21,7 @@ import Link from 'next/link';
 import Logo from '@/components/Logo';
 import { useAppSelector } from '@/common/redux/hooks';
 import { selectIsLogin } from '@/common/redux/auth/auth.slice';
-import HeaderDropdown from '@/components/Header/Dropdown';
+import HeaderDropdown from '@/components/Header';
 
 // eslint-disable-next-line no-unused-vars
 const useStyles = makeStyles((_theme: Theme) => ({
@@ -103,6 +103,7 @@ const Header = () => {
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };

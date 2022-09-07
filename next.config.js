@@ -6,11 +6,13 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, '@/styles')],
   },
+  swcMinify: true,
   env: {
     API_ENDPOINT_URL: process.env.API_ENDPOINT_URL,
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
     GOOGLE_AUTH_URL: process.env.GOOGLE_AUTH_URL,
   },
+  productionBrowserSourceMaps: true,
 };
 
 module.exports = nextConfig;

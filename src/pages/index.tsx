@@ -5,10 +5,12 @@ import { Grid } from '@mui/material';
 import Banner from '@/components/Banner';
 import Booking from '@/components/Booking';
 import Layout from '@/layouts';
-import SectionTitle from '@/components/Section/SectionTitle';
-import SectionContainer from '@/components/Section/SectionContainer';
+import {
+  SectionContainer,
+  SectionTitle,
+  SectionContent,
+} from '@/components/Section';
 import VTCard from '@/components/Card';
-import SectionContent from '@/components/Section/SectionContent';
 
 const Home: NextPage = () => {
   return (
