@@ -17,11 +17,9 @@ import {
   Typography,
 } from '@mui/material';
 
-import VTFormInput from '../Form/FormInput';
+import { VTFormInput, VTSubmitButton, VTSocialButton } from '@/components/Form';
 import { useAppDispatch } from '@/common/redux/hooks';
 import { setSignupData } from '@/common/redux/auth/auth.slice';
-import VTSubmitButton from '../Form/SubmitButton';
-import VTSocialButton from '../Form/SocialButton';
 import config from '@/utils/config';
 import AxiosInstance from '@/common/axiosInstance';
 

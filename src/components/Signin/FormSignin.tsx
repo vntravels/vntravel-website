@@ -17,13 +17,11 @@ import {
   Theme,
   Typography,
 } from '@mui/material';
+import { useRouter } from 'next/router';
 
-import VTFormInput from '../Form/FormInput';
+import { VTFormInput, VTSubmitButton, VTSocialButton } from '@/components/Form';
 import { useAppDispatch, useAppSelector } from '@/common/redux/hooks';
 import { selectIsLogin, setSigninData } from '@/common/redux/auth/auth.slice';
-import { useRouter } from 'next/router';
-import VTSubmitButton from '../Form/SubmitButton';
-import VTSocialButton from '../Form/SocialButton';
 
 const useStyles = makeStyles((theme: Theme) => ({
   SignDivider: {
