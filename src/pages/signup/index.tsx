@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import type { NextPage } from 'next';
 import Link from 'next/link';
 import { makeStyles } from '@mui/styles';
@@ -16,6 +16,7 @@ import {
 import Logo from '@/components/Logo';
 import Footer from '@/layouts/Footer';
 import FormSignup from '@/components/FormSignup';
+import VTLoading from '@/components/Loading';
 
 const useStyles = makeStyles((theme: Theme) => ({
   Root: {
@@ -133,7 +134,9 @@ const Signup: NextPage = () => {
                       </Grid>
                     </Grid>
                     <Grid item xs={12}>
-                      <FormSignup />
+                      <Suspense fallback={<VTLoading />}>
+                        <FormSignup />
+                      </Suspense>
                     </Grid>
                   </Grid>
                 </Box>
