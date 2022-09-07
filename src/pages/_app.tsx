@@ -5,7 +5,6 @@ import { Provider } from 'react-redux';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
 import { store } from '@/common/redux/store';
-import VTAlert from '@/components/Alert';
 import customTheme from '@/styles/theme/createTheme';
 import createEmotionCache from '@/utils/createEmotionCache';
 import config from '@/utils/config';
@@ -21,7 +20,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         <ThemeProvider theme={customTheme()}>
           <GoogleOAuthProvider clientId={config.GOOGLE_CLIENT_ID}>
             <AuthWrapper>
-              <VTAlert />
               <Component {...pageProps} />
             </AuthWrapper>
           </GoogleOAuthProvider>

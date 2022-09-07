@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
     '& .MuiOutlinedInput-root': {
       borderRadius: 12,
+      paddingRight: 0,
     },
 
     '& > label': {
@@ -73,6 +74,8 @@ const VTFormInput = ({
         onChange={onChange}
         endAdornment={endAdornment}
         label={label}
+        autoComplete="true"
+        autoFocus={true}
       />
       {isError && <FormHelperText component="p">{errorMessage}</FormHelperText>}
     </FormControl>

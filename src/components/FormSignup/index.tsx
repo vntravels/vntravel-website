@@ -3,7 +3,7 @@ import Link from 'next/link';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 import { useGoogleLogin } from '@react-oauth/google';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { VisibilityOffOutlined, VisibilityOutlined } from '@mui/icons-material';
 import { makeStyles } from '@mui/styles';
 import {
   Box,
@@ -44,6 +44,11 @@ const useStyles = makeStyles((theme: Theme) => ({
       fontWeight: 400,
       cursor: 'pointer',
     },
+  },
+
+  ShowPasswordButton: {
+    position: 'absolute',
+    right: 4,
   },
 }));
 
@@ -160,14 +165,20 @@ const FormSignup = () => {
                 onChange={handleChange}
                 endAdornment={
                   values.password ? (
-                    <InputAdornment position="end">
+                    <InputAdornment
+                      className={classes.ShowPasswordButton}
+                      position="end"
+                    >
                       <IconButton
-                        edge="end"
                         onClick={handleClickShowPassword}
                         onMouseDown={handleMouseDownPassword}
                         disableTouchRipple
                       >
-                        {showPassword ? <Visibility /> : <VisibilityOff />}
+                        {showPassword ? (
+                          <VisibilityOutlined />
+                        ) : (
+                          <VisibilityOffOutlined />
+                        )}
                       </IconButton>
                     </InputAdornment>
                   ) : (
