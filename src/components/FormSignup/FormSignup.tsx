@@ -20,10 +20,14 @@ import {
 import VTFormInput from '@/components/Form/FormInput';
 import VTSubmitButton from '@/components/Form/SubmitButton';
 import VTSocialButton from '@/components/Form/SocialButton';
-import { useAppDispatch } from '@/common/redux/hooks';
+import { useAppDispatch, useAppSelector } from '@/common/redux/hooks';
 import { setSignupData } from '@/common/redux/auth/auth.slice';
 import config from '@/utils/config';
 import AxiosInstance from '@/common/axiosInstance';
+import {
+  selectErrorMessage,
+  setErrorMessage,
+} from '@/common/redux/common/common.slice';
 
 const useStyles = makeStyles((theme: Theme) => ({
   SignDivider: {
@@ -55,13 +59,12 @@ const useStyles = makeStyles((theme: Theme) => ({
 const validationSchema = Yup.object().shape({
   email: Yup.string().required('Email is required!').email('Invalid email!'),
   password: Yup.string().required('Password is required!'),
-  firstName: Yup.string().required('First Name is required!'),
-  lastName: Yup.string().required('Last Name is required!'),
 });
 
 const FormSignup = () => {
   const classes = useStyles();
   const dispatch = useAppDispatch();
+  const errorMessage = useAppSelector(selectErrorMessage);
 
   const [checked, setChecked] = React.useState<boolean>(false);
   const [showPassword, setShowPassword] = React.useState<boolean>(false);
@@ -152,7 +155,10 @@ const FormSignup = () => {
                 label="Email Address / Username"
                 errorMessage={errors.email}
                 value={values.email}
-                onChange={handleChange}
+                onChange={(event) => {
+                  handleChange(event);
+                  dispatch(setErrorMessage({ message: '' }));
+                }}
               />
 
               <VTFormInput
@@ -162,7 +168,10 @@ const FormSignup = () => {
                 isError={Boolean(touched.password && errors.password)}
                 type={showPassword ? 'text' : 'password'}
                 value={values.password}
-                onChange={handleChange}
+                onChange={(event) => {
+                  handleChange(event);
+                  dispatch(setErrorMessage({ message: '' }));
+                }}
                 endAdornment={
                   values.password ? (
                     <InputAdornment
@@ -220,6 +229,12 @@ const FormSignup = () => {
                   />
                 </Grid>
               </Grid>
+              {errorMessage.message && (
+                <Typography variant="subtitle2" color="red">
+                  {errorMessage.message}!
+                </Typography>
+              )}
+
               <VTSubmitButton
                 isSubmitting={isSubmitting}
                 onClick={() => handleSubmit()}

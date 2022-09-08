@@ -10,7 +10,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const VTLoading = () => {
+const VTLoader = () => {
   const classes = useStyles();
 
   return (
@@ -20,4 +20,4 @@ const VTLoading = () => {
   );
 };
 
-export default VTLoading;
+export default VTLoader;

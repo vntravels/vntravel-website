@@ -16,7 +16,7 @@ import {
 import Logo from '@/components/Logo';
 import Footer from '@/layouts/Footer';
 import FormSignup from '@/components/FormSignup';
-import VTLoading from '@/components/Loading';
+import VTLoader from '@/components/Loader';
 
 const useStyles = makeStyles((theme: Theme) => ({
   Root: {
@@ -134,7 +134,7 @@ const Signup: NextPage = () => {
                       </Grid>
                     </Grid>
                     <Grid item xs={12}>
-                      <Suspense fallback={<VTLoading />}>
+                      <Suspense fallback={<VTLoader />}>
                         <FormSignup />
                       </Suspense>
                     </Grid>

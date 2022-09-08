@@ -20,8 +20,12 @@ import {
 import VTFormInput from '@/components/Form/FormInput';
 import VTSubmitButton from '@/components/Form/SubmitButton';
 import VTSocialButton from '@/components/Form/SocialButton';
-import { useAppDispatch } from '@/common/redux/hooks';
+import { useAppDispatch, useAppSelector } from '@/common/redux/hooks';
 import { setSigninData } from '@/common/redux/auth/auth.slice';
+import {
+  selectErrorMessage,
+  setErrorMessage,
+} from '@/common/redux/common/common.slice';
 
 const useStyles = makeStyles((theme: Theme) => ({
   SignDivider: {
@@ -57,6 +61,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 const FormSignin = () => {
   const classes = useStyles();
   const dispatch = useAppDispatch();
+  const errorMessage = useAppSelector(selectErrorMessage);
 
   const [checked, setChecked] = React.useState(true);
   const [showPassword, setShowPassword] = React.useState(false);
@@ -96,7 +101,10 @@ const FormSignin = () => {
                 name="email"
                 label="Email Address / Username"
                 value={values.email}
-                onChange={handleChange}
+                onChange={(event) => {
+                  handleChange(event);
+                  dispatch(setErrorMessage(''));
+                }}
               />
 
               <VTFormInput
@@ -105,7 +113,10 @@ const FormSignin = () => {
                 name="password"
                 type={showPassword ? 'text' : 'password'}
                 value={values.password}
-                onChange={handleChange}
+                onChange={(event) => {
+                  handleChange(event);
+                  dispatch(setErrorMessage(''));
+                }}
                 endAdornment={
                   values.password ? (
                     <InputAdornment
@@ -151,6 +162,13 @@ const FormSignin = () => {
                   Forgot Password?
                 </Typography>
               </Stack>
+
+              {errorMessage.message && (
+                <Typography variant="subtitle2" color="red">
+                  {errorMessage.message}!
+                </Typography>
+              )}
+
               <VTSubmitButton
                 isSubmitting={isSubmitting}
                 onClick={() => handleSubmit()}

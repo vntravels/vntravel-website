@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import type { NextPage } from 'next';
 import Link from 'next/link';
 import { makeStyles } from '@mui/styles';
@@ -19,7 +19,6 @@ import FormSignin from '@/components/FormSignin';
 import Footer from '@/layouts/Footer';
 import { useAppSelector } from '@/common/redux/hooks';
 import { selectIsLogin } from '@/common/redux/auth/auth.slice';
-import VTLoading from '@/components/Loading';
 
 const useStyles = makeStyles((theme: Theme) => ({
   Root: {
@@ -153,9 +152,7 @@ const Signin: NextPage = () => {
                       </Grid>
                     </Grid>
                     <Grid item xs={12}>
-                      <Suspense fallback={<VTLoading />}>
-                        <FormSignin />
-                      </Suspense>
+                      <FormSignin />
                     </Grid>
                   </Grid>
                 </Box>
