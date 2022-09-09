@@ -11,6 +11,7 @@ import {
   SectionContent,
 } from '@/components/Section';
 import { VTCard, VTCardImage, VTCardTrending } from '@/components/Card';
+import VTCarousel from '@/components/Carousel';
 
 const Home: NextPage = () => {
   return (
@@ -34,6 +35,13 @@ const Home: NextPage = () => {
                 title="Lizard"
                 description="Test"
                 image="images/hanoi.png"
+                style={{
+                  padding: '24px',
+                  paddingLeft: 0,
+                  paddingRight: 0,
+                  paddingBottom: 'o !important',
+                  borderRadius: '24px',
+                }}
               />
             </Grid>
             <Grid item xs={4}>
@@ -41,6 +49,13 @@ const Home: NextPage = () => {
                 title="Lizard"
                 description="Test"
                 image="images/hanoi.png"
+                style={{
+                  padding: '24px',
+                  paddingLeft: 0,
+                  paddingRight: 0,
+                  paddingBottom: 'o !important',
+                  borderRadius: '24px',
+                }}
               />
             </Grid>
             <Grid item xs={4}>
@@ -48,6 +63,13 @@ const Home: NextPage = () => {
                 title="Lizard"
                 description="Test"
                 image="images/hanoi.png"
+                style={{
+                  padding: '24px',
+                  paddingLeft: 0,
+                  paddingRight: 0,
+                  paddingBottom: 'o !important',
+                  borderRadius: '24px',
+                }}
               />
             </Grid>
           </Grid>
@@ -117,8 +139,8 @@ const Home: NextPage = () => {
 
       <SectionContainer backgroundColor="#F2F3F3">
         <SectionTitle
-          title="Find a best place in Viet Nam"
-          description="Whether you’ve looking for places for a vacation. We are here to Guide you about the details you need to check in"
+          title="Trending Destinations"
+          description="The most searched destinations for the TripGuide"
         />
         <SectionContent>
           <Grid container spacing={3}>
@@ -141,6 +163,16 @@ const Home: NextPage = () => {
               />
             </Grid>
           </Grid>
+        </SectionContent>
+      </SectionContainer>
+      <SectionContainer>
+        <SectionTitle
+          textAlign="start"
+          title="Explore world"
+          description="Over 10,024 beautiful places to go"
+        />
+        <SectionContent>
+          <VTCarousel arrItem={[1, 2, 3, 4, 5, 6]} />
         </SectionContent>
       </SectionContainer>
     </Layout>

@@ -5,7 +5,7 @@ import { makeStyles } from '@mui/styles';
 // eslint-disable-next-line no-unused-vars
 const useStyles = makeStyles((_theme: Theme) => ({
   Root: {
-    paddingTop: 30,
+    paddingTop: 40,
   },
 }));
 

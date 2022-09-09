@@ -19,9 +19,13 @@ import { NotificationsNoneOutlined } from '@mui/icons-material';
 import Link from 'next/link';
 
 import Logo from '@/components/Logo';
-import { useAppSelector } from '@/common/redux/hooks';
+import { useAppDispatch, useAppSelector } from '@/common/redux/hooks';
 import { selectIsLogin } from '@/common/redux/auth/auth.slice';
 import HeaderDropdown from '@/components/Header';
+import {
+  selectCurrencyState,
+  setCurrencyState,
+} from '@/common/redux/common/common.slice';
 
 // eslint-disable-next-line no-unused-vars
 const useStyles = makeStyles((_theme: Theme) => ({
@@ -103,7 +107,9 @@ const useStyles = makeStyles((_theme: Theme) => ({
 const Header = () => {
   const classes = useStyles();
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const isLogin = useAppSelector(selectIsLogin);
+  const currencyState = useAppSelector(selectCurrencyState);
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -111,7 +117,10 @@ const Header = () => {
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
+  const handleChangeCurrency = (values: { currency: string; flag: string }) => {
+    dispatch(
+      setCurrencyState({ currency: values.currency, flag: values.flag }),
+    );
     setAnchorEl(null);
   };
 
@@ -129,9 +138,9 @@ const Header = () => {
               onClick={handleClick}
             >
               <Typography fontSize={12} variant="body2" component="span">
-                VND
+                {currencyState.currency}
               </Typography>
-              <Image width={24} height={24} src={'/icons/iconVN.svg'} alt="" />
+              <Image width={24} height={24} src={currencyState.flag} alt="" />
             </Button>
             <Menu
               className={classes.MenuLocation}
@@ -145,10 +154,35 @@ const Header = () => {
                 horizontal: 'right',
               }}
               open={open}
-              onClose={handleClose}
+              onClose={() => setAnchorEl(null)}
               disableScrollLock
             >
-              <MenuItem onClick={handleClose}>
+              <MenuItem
+                onClick={() =>
+                  handleChangeCurrency({
+                    currency: 'VND',
+                    flag: '/icons/iconVN.svg',
+                  })
+                }
+              >
+                <ListItemIcon>
+                  <Image
+                    width={24}
+                    height={24}
+                    src={'/icons/iconVN.svg'}
+                    alt=""
+                  />
+                </ListItemIcon>
+                <ListItemText>Viet Nam (VND)</ListItemText>
+              </MenuItem>
+              <MenuItem
+                onClick={() =>
+                  handleChangeCurrency({
+                    currency: 'USD',
+                    flag: '/icons/iconUS.svg',
+                  })
+                }
+              >
                 <ListItemIcon>
                   <Image
                     width={24}
@@ -159,7 +193,14 @@ const Header = () => {
                 </ListItemIcon>
                 <ListItemText>United State (USD)</ListItemText>
               </MenuItem>
-              <MenuItem onClick={handleClose}>
+              <MenuItem
+                onClick={() =>
+                  handleChangeCurrency({
+                    currency: 'EUR',
+                    flag: '/icons/iconUK.svg',
+                  })
+                }
+              >
                 <ListItemIcon>
                   <Image
                     width={24}
@@ -170,7 +211,14 @@ const Header = () => {
                 </ListItemIcon>
                 <ListItemText>United Kingdom (EUR)</ListItemText>
               </MenuItem>
-              <MenuItem onClick={handleClose}>
+              <MenuItem
+                onClick={() =>
+                  handleChangeCurrency({
+                    currency: 'SGD',
+                    flag: '/icons/iconSG.svg',
+                  })
+                }
+              >
                 <ListItemIcon>
                   <Image
                     width={24}
@@ -180,17 +228,6 @@ const Header = () => {
                   />
                 </ListItemIcon>
                 <ListItemText>Singapore (SGD)</ListItemText>
-              </MenuItem>
-              <MenuItem onClick={handleClose}>
-                <ListItemIcon>
-                  <Image
-                    width={24}
-                    height={24}
-                    src={'/icons/iconAU.svg'}
-                    alt=""
-                  />
-                </ListItemIcon>
-                <ListItemText>Australia (AUD)</ListItemText>
               </MenuItem>
             </Menu>
           </Box>

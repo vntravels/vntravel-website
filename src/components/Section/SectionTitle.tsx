@@ -4,11 +4,6 @@ import { makeStyles } from '@mui/styles';
 
 // eslint-disable-next-line no-unused-vars
 const useStyles = makeStyles((_theme: Theme) => ({
-  Root: {
-    textAlign: 'center',
-    index: -1,
-  },
-
   SectionTitle: {
     fontWeight: 700,
     fontSize: 32,
@@ -18,22 +13,27 @@ const useStyles = makeStyles((_theme: Theme) => ({
   SectionDescription: {
     fontSize: 18,
     color: '#5C5B5B',
-    marginTop: 20,
+    marginTop: 6,
   },
 }));
 
 type SectionTitleProps = {
   title: string;
   description: string;
+  textAlign?: string;
 };
 
-const SectionTitle = ({ title, description }: SectionTitleProps) => {
+const SectionTitle = ({
+  title,
+  description,
+  textAlign = 'center',
+}: SectionTitleProps) => {
   const classes = useStyles();
 
   const desArr = description.split('.');
 
   return (
-    <Box className={classes.Root}>
+    <Box sx={{ textAlign }}>
       <Typography className={classes.SectionTitle} variant="body1">
         {title}
       </Typography>

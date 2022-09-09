@@ -1,10 +1,10 @@
 import React from 'react';
 import { Card, CardMedia, CardContent, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import { BedOutlined } from '@mui/icons-material';
 
 const useStyles = makeStyles(() => ({
   Root: {
-    padding: 24,
     border: '1px solid #D6D2D2',
     boxShadow: 'none',
     borderRadius: 24,
@@ -16,16 +16,6 @@ const useStyles = makeStyles(() => ({
     },
   },
 
-  CardMedia: {
-    borderRadius: 24,
-  },
-
-  CardContent: {
-    paddingLeft: 0,
-    paddingRight: 0,
-    paddingBottom: '0 !important',
-  },
-
   CardTitle: {
     fontWeight: 700,
     fontSize: 20,
@@ -34,8 +24,15 @@ const useStyles = makeStyles(() => ({
   },
 
   CardDescription: {
+    fontWeight: 600,
     fontSize: 16,
     color: '#5C5B5B',
+  },
+
+  RoomAvailable: {
+    fontSize: 16,
+    color: '#5C5B5B',
+    marginTop: 10,
   },
 }));
 
@@ -43,25 +40,38 @@ type VTCardProps = {
   title?: string;
   description?: string;
   image?: string;
+  style?: any;
+  roomAvailable?: number;
 };
 
-const VTCard = ({ title, description, image }: VTCardProps) => {
+const VTCard = ({
+  title,
+  description,
+  image,
+  style,
+  roomAvailable,
+}: VTCardProps) => {
   const classes = useStyles();
 
   return (
-    <Card className={classes.Root}>
+    <Card className={classes.Root} sx={{ padding: style.padding }}>
       {image && (
         <CardMedia
-          className={classes.CardMedia}
+          sx={{ borderRadius: style.borderRadius }}
           component="img"
           width={384}
-          height={324}
           image={image}
           alt={title}
         />
       )}
 
-      <CardContent className={classes.CardContent}>
+      <CardContent
+        sx={{
+          paddingLeft: style.paddingLeft,
+          paddingRight: style.paddingRight,
+          paddingBottom: style.paddingBottom,
+        }}
+      >
         {title && (
           <Typography
             className={classes.CardTitle}
@@ -81,6 +91,22 @@ const VTCard = ({ title, description, image }: VTCardProps) => {
           >
             {description}
           </Typography>
+        )}
+
+        {roomAvailable && (
+          <>
+            <Typography
+              className={classes.RoomAvailable}
+              variant="body2"
+              color="text.secondary"
+              component="div"
+            >
+              <BedOutlined
+                sx={{ verticalAlign: 'bottom', marginRight: '10px' }}
+              />
+              Room Available: {roomAvailable}
+            </Typography>
+          </>
         )}
       </CardContent>
     </Card>
