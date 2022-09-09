@@ -4,7 +4,7 @@ import React from 'react';
 
 // eslint-disable-next-line no-unused-vars
 const useStyles = makeStyles((_theme: Theme) => ({
-  Content: {
+  Root: {
     margin: '0 auto',
     padding: '50px 0',
     maxWidth: 1240,
@@ -16,7 +16,7 @@ const SectionContainer = ({ children, ...props }: any) => {
 
   return (
     <Box sx={{ backgroundColor: props.backgroundColor }}>
-      <Box className={classes.Content}>{children}</Box>
+      <Box className={classes.Root}>{children}</Box>
     </Box>
   );
 };
