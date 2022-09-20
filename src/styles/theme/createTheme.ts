@@ -1,7 +1,6 @@
 import { createTheme } from '@mui/material/styles';
 
-import colors from '../_themes-vars.module.scss';
-
+import colors from './_themes-vars.module.scss';
 import { themePalette } from './themePalette';
 
 const customTheme = (customization?: any) => {

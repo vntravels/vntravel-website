@@ -98,14 +98,6 @@ const Signin: NextPage = () => {
                     justifyContent="center"
                   >
                     <Grid item sx={{ mb: 3 }}>
-                      <Typography
-                        variant="subtitle2"
-                        color="secondary"
-                        component={Link}
-                        href={'/forgot-password'}
-                      >
-                        <Logo />
-                      </Typography>
                       <Link href="/">
                         <Logo />
                       </Link>

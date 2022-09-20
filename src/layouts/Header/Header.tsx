@@ -32,8 +32,9 @@ const useStyles = makeStyles((_theme: Theme) => ({
   Root: {
     position: 'fixed',
     width: '100%',
-    background: '#ffffff',
     zIndex: 1000,
+    background: 'rgba(249, 250, 251, 0.72)',
+    backdropFilter: 'blur(6px)',
   },
 
   Header: {
@@ -125,7 +126,7 @@ const Header = () => {
   };
 
   return (
-    <Box className={classes.Root}>
+    <Box className={classes.Root} component="header">
       <Box className={classes.Header}>
         <Link href="/">
           <Logo />

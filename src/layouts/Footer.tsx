@@ -15,7 +15,7 @@ import Image from 'next/image';
 const useStyles = makeStyles((theme: Theme) => ({
   Root: {
     margin: '0 auto',
-    padding: '50px 0 20px 0',
+    padding: '20px 0',
     maxWidth: 1240,
     alignItems: 'center',
 
@@ -56,6 +56,7 @@ const Footer = () => {
   return (
     <Stack
       className={classes.Root}
+      component="footer"
       direction="row"
       justifyContent="space-between"
     >
