@@ -28,6 +28,7 @@ import {
   selectErrorMessage,
   setErrorMessage,
 } from '@/common/redux/common/common.slice';
+import useResponsive from '@/hooks/useResponsive';
 
 const useStyles = makeStyles((theme: Theme) => ({
   SignDivider: {
@@ -48,6 +49,10 @@ const useStyles = makeStyles((theme: Theme) => ({
       fontWeight: 400,
       cursor: 'pointer',
     },
+
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 14,
+    },
   },
 
   ShowPasswordButton: {
@@ -65,6 +70,7 @@ const FormSignup = () => {
   const classes = useStyles();
   const dispatch = useAppDispatch();
   const errorMessage = useAppSelector(selectErrorMessage);
+  const matchDownSM = useResponsive({ query: 'down', key: 'sm' });
 
   const [checked, setChecked] = React.useState<boolean>(false);
   const [showPassword, setShowPassword] = React.useState<boolean>(false);
@@ -121,7 +127,7 @@ const FormSignup = () => {
             isSubmitting,
           }) => (
             <Box component="form">
-              <Grid container spacing={2}>
+              <Grid container spacing={matchDownSM ? 0 : 2}>
                 <Grid item xs={12} sm={6}>
                   <VTFormInput
                     id="outlined-adornment-first-name"

@@ -3,20 +3,13 @@ import type { NextPage } from 'next';
 import Link from 'next/link';
 import { makeStyles } from '@mui/styles';
 import Head from 'next/head';
-import {
-  Box,
-  Grid,
-  Stack,
-  Theme,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from '@mui/material';
+import { Box, Grid, Stack, Theme, Typography, useTheme } from '@mui/material';
 
 import Logo from '@/components/Logo';
 import Footer from '@/layouts/Footer';
 import FormSignup from '@/components/FormSignup';
 import VTLoader from '@/components/Loader';
+import useResponsive from '@/hooks/useResponsive';
 
 const useStyles = makeStyles((theme: Theme) => ({
   Root: {
@@ -57,13 +50,21 @@ const useStyles = makeStyles((theme: Theme) => ({
       textDecoration: 'none',
       cursor: 'pointer',
     },
+
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 14,
+
+      '& .MuiTypography-root': {
+        fontSize: 12,
+      },
+    },
   },
 }));
 
 const Signup: NextPage = () => {
   const classes = useStyles();
   const theme = useTheme();
-  const matchDownSM = useMediaQuery(theme.breakpoints.down('sm'));
+  const matchDownSM = useResponsive({ query: 'down', key: 'sm' });
 
   return (
     <>
@@ -95,7 +96,7 @@ const Signup: NextPage = () => {
                     <Grid item xs={12}>
                       <Grid
                         container
-                        direction={matchDownSM ? 'column-reverse' : 'row'}
+                        direction={'row'}
                         alignItems="center"
                         justifyContent="center"
                       >
@@ -109,6 +110,7 @@ const Signup: NextPage = () => {
                               color={theme.palette.secondary.main}
                               gutterBottom
                               variant={'h2'}
+                              fontSize={matchDownSM ? 16 : 24}
                             >
                               Sign Up
                             </Typography>

@@ -13,9 +13,11 @@ import {
   Divider,
   IconButton,
   Badge,
+  ButtonBase,
+  Avatar,
 } from '@mui/material';
 import { useRouter } from 'next/router';
-import { NotificationsNoneOutlined } from '@mui/icons-material';
+import { MenuOutlined, NotificationsNoneOutlined } from '@mui/icons-material';
 import Link from 'next/link';
 
 import Logo from '@/components/Logo';
@@ -27,8 +29,7 @@ import {
   setCurrencyState,
 } from '@/common/redux/common/common.slice';
 
-// eslint-disable-next-line no-unused-vars
-const useStyles = makeStyles((_theme: Theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   Root: {
     position: 'fixed',
     width: '100%',
@@ -44,6 +45,10 @@ const useStyles = makeStyles((_theme: Theme) => ({
     margin: '0 auto',
     justifyContent: 'space-between',
     alignItems: 'center',
+
+    [theme.breakpoints.down('md')]: {
+      padding: '14px 20px',
+    },
   },
 
   RightNav: {
@@ -105,7 +110,7 @@ const useStyles = makeStyles((_theme: Theme) => ({
   },
 }));
 
-const Header = () => {
+const Header = ({ displayToggle, handleLeftDrawerToggle }: any) => {
   const classes = useStyles();
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -126,150 +131,176 @@ const Header = () => {
   };
 
   return (
-    <Box className={classes.Root} component="header">
-      <Box className={classes.Header}>
-        <Link href="/">
-          <Logo />
-        </Link>
-        <Box className={classes.RightNav}>
-          <Box>
-            <Button
-              className={classes.ButtonLocation}
-              disableRipple
-              onClick={handleClick}
-            >
-              <Typography fontSize={12} variant="body2" component="span">
-                {currencyState.currency}
-              </Typography>
-              <Image width={24} height={24} src={currencyState.flag} alt="" />
-            </Button>
-            <Menu
-              className={classes.MenuLocation}
-              anchorEl={anchorEl}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'right',
-              }}
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={open}
-              onClose={() => setAnchorEl(null)}
-              disableScrollLock
-            >
-              <MenuItem
-                onClick={() =>
-                  handleChangeCurrency({
-                    currency: 'VND',
-                    flag: '/icons/iconVN.svg',
-                  })
-                }
+    <>
+      <Box className={classes.Root} component="header">
+        <Box className={classes.Header}>
+          <Link href="/">
+            <Logo />
+          </Link>
+          {displayToggle ? (
+            <Box component="span">
+              <ButtonBase
+                sx={{
+                  borderRadius: '12px',
+                  overflow: 'hidden',
+                }}
               >
-                <ListItemIcon>
-                  <Image
-                    width={24}
-                    height={24}
-                    src={'/icons/iconVN.svg'}
-                    alt=""
-                  />
-                </ListItemIcon>
-                <ListItemText>Viet Nam (VND)</ListItemText>
-              </MenuItem>
-              <MenuItem
-                onClick={() =>
-                  handleChangeCurrency({
-                    currency: 'USD',
-                    flag: '/icons/iconUS.svg',
-                  })
-                }
-              >
-                <ListItemIcon>
-                  <Image
-                    width={24}
-                    height={24}
-                    src={'/icons/iconUS.svg'}
-                    alt=""
-                  />
-                </ListItemIcon>
-                <ListItemText>United State (USD)</ListItemText>
-              </MenuItem>
-              <MenuItem
-                onClick={() =>
-                  handleChangeCurrency({
-                    currency: 'EUR',
-                    flag: '/icons/iconUK.svg',
-                  })
-                }
-              >
-                <ListItemIcon>
-                  <Image
-                    width={24}
-                    height={24}
-                    src={'/icons/iconUK.svg'}
-                    alt=""
-                  />
-                </ListItemIcon>
-                <ListItemText>United Kingdom (EUR)</ListItemText>
-              </MenuItem>
-              <MenuItem
-                onClick={() =>
-                  handleChangeCurrency({
-                    currency: 'SGD',
-                    flag: '/icons/iconSG.svg',
-                  })
-                }
-              >
-                <ListItemIcon>
-                  <Image
-                    width={24}
-                    height={24}
-                    src={'/icons/iconSG.svg'}
-                    alt=""
-                  />
-                </ListItemIcon>
-                <ListItemText>Singapore (SGD)</ListItemText>
-              </MenuItem>
-            </Menu>
-          </Box>
-
-          <Box sx={{ display: 'contents' }}>
-            {isLogin ? (
-              <>
-                <IconButton>
-                  <Badge badgeContent={2} color="primary">
-                    <NotificationsNoneOutlined />
-                  </Badge>
-                </IconButton>
-                <Divider
-                  orientation="vertical"
-                  flexItem
-                  sx={{ margin: '10px 6px' }}
-                />
-                <HeaderDropdown />
-              </>
-            ) : (
-              <>
+                <Avatar
+                  variant="rounded"
+                  onClick={handleLeftDrawerToggle}
+                  color="inherit"
+                >
+                  <MenuOutlined />
+                </Avatar>
+              </ButtonBase>
+            </Box>
+          ) : (
+            <Box className={classes.RightNav}>
+              <Box>
                 <Button
-                  className={classes.ButtonSignIn}
-                  onClick={() => router.push('/signin')}
+                  className={classes.ButtonLocation}
                   disableRipple
+                  onClick={handleClick}
                 >
-                  Sign in
+                  <Typography fontSize={12} variant="body2" component="span">
+                    {currencyState.currency}
+                  </Typography>
+                  <Image
+                    width={24}
+                    height={24}
+                    src={currencyState.flag}
+                    alt=""
+                  />
                 </Button>
-                <Button
-                  onClick={() => router.push('/signup')}
-                  variant="contained"
-                  className={classes.ButtonSignUp}
+                <Menu
+                  className={classes.MenuLocation}
+                  anchorEl={anchorEl}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'right',
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={open}
+                  onClose={() => setAnchorEl(null)}
+                  disableScrollLock
                 >
-                  Sign up
-                </Button>
-              </>
-            )}
-          </Box>
+                  <MenuItem
+                    onClick={() =>
+                      handleChangeCurrency({
+                        currency: 'VND',
+                        flag: '/icons/iconVN.svg',
+                      })
+                    }
+                  >
+                    <ListItemIcon>
+                      <Image
+                        width={24}
+                        height={24}
+                        src={'/icons/iconVN.svg'}
+                        alt=""
+                      />
+                    </ListItemIcon>
+                    <ListItemText>Viet Nam (VND)</ListItemText>
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() =>
+                      handleChangeCurrency({
+                        currency: 'USD',
+                        flag: '/icons/iconUS.svg',
+                      })
+                    }
+                  >
+                    <ListItemIcon>
+                      <Image
+                        width={24}
+                        height={24}
+                        src={'/icons/iconUS.svg'}
+                        alt=""
+                      />
+                    </ListItemIcon>
+                    <ListItemText>United State (USD)</ListItemText>
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() =>
+                      handleChangeCurrency({
+                        currency: 'EUR',
+                        flag: '/icons/iconUK.svg',
+                      })
+                    }
+                  >
+                    <ListItemIcon>
+                      <Image
+                        width={24}
+                        height={24}
+                        src={'/icons/iconUK.svg'}
+                        alt=""
+                      />
+                    </ListItemIcon>
+                    <ListItemText>United Kingdom (EUR)</ListItemText>
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() =>
+                      handleChangeCurrency({
+                        currency: 'SGD',
+                        flag: '/icons/iconSG.svg',
+                      })
+                    }
+                  >
+                    <ListItemIcon>
+                      <Image
+                        width={24}
+                        height={24}
+                        src={'/icons/iconSG.svg'}
+                        alt=""
+                      />
+                    </ListItemIcon>
+                    <ListItemText>Singapore (SGD)</ListItemText>
+                  </MenuItem>
+                </Menu>
+              </Box>
+
+              <Box sx={{ display: 'contents' }}>
+                {isLogin ? (
+                  <>
+                    <IconButton>
+                      <Badge badgeContent={2} color="primary">
+                        <NotificationsNoneOutlined />
+                      </Badge>
+                    </IconButton>
+                    <Divider
+                      orientation="vertical"
+                      flexItem
+                      sx={{ margin: '10px 6px' }}
+                    />
+                    <HeaderDropdown />
+                  </>
+                ) : (
+                  <>
+                    <Button
+                      className={classes.ButtonSignIn}
+                      onClick={() => router.push('/signin')}
+                      disableRipple
+                    >
+                      Sign in
+                    </Button>
+                    <Button
+                      onClick={() => router.push('/signup')}
+                      variant="contained"
+                      className={classes.ButtonSignUp}
+                    >
+                      Sign up
+                    </Button>
+                  </>
+                )}
+              </Box>
+            </Box>
+          )}
         </Box>
       </Box>
-    </Box>
+    </>
   );
 };
 

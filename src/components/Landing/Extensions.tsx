@@ -1,11 +1,20 @@
-import { Typography, Box, List, ListItem, Grid, Link } from '@mui/material';
+import {
+  Typography,
+  Box,
+  List,
+  ListItem,
+  Grid,
+  Link,
+  Theme,
+} from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import Image from 'next/image';
 import React from 'react';
 
 import Logo from '../Logo';
 
-const useStyles = makeStyles(() => ({
+// eslint-disable-next-line no-unused-vars
+const useStyles = makeStyles((_theme: Theme) => ({
   PaymentPartner: {
     '& .MuiTypography-h3': {
       marginTop: 24,
@@ -87,66 +96,77 @@ const Extensions = () => {
 
   return (
     <Grid container spacing={6}>
-      <Grid item xs={4}>
-        <Typography variant="subtitle1" component="div">
-          <Logo />
-          <Typography
-            color="#5C5B5B"
-            variant="subtitle2"
-            lineHeight={2}
-            component="div"
-          >
-            This is the team that specializes in making sure in the find it a
-            your interior looks cool
-          </Typography>
-        </Typography>
+      <Grid item xs={12} md={4}>
+        <Grid container>
+          <Grid item xs={12}>
+            <Typography variant="subtitle1" component="div">
+              <Logo />
+              <Typography
+                color="#5C5B5B"
+                variant="subtitle2"
+                lineHeight={2}
+                component="div"
+              >
+                This is the team that specializes in making sure in the find it
+                a your interior looks cool
+              </Typography>
+            </Typography>
+          </Grid>
 
-        <Box className={classes.PaymentPartner} component="div">
-          <Typography
-            variant="h3"
-            fontSize={20}
-            color="#132150"
-            component="div"
-          >
-            Payment Partner
-          </Typography>
-          <Typography
-            className={classes.PaymentType}
-            variant="subtitle2"
-            component="span"
-          >
-            <Image
-              src={'/icons/iconMasterCard.svg'}
-              width={42}
-              height={42}
-              alt=""
-            />
-          </Typography>
-          <Typography
-            className={classes.PaymentType}
-            variant="subtitle2"
-            component="span"
-          >
-            <Image src={'/icons/iconVisa.svg'} width={42} height={42} alt="" />
-          </Typography>
-          <Typography
-            className={classes.PaymentType}
-            variant="subtitle2"
-            component="span"
-          >
-            <Image
-              src={'/icons/iconPaypal.svg'}
-              width={42}
-              height={42}
-              alt=""
-            />
-          </Typography>
-        </Box>
+          <Grid item xs={12}>
+            <Box className={classes.PaymentPartner} component="div">
+              <Typography
+                variant="h3"
+                fontSize={20}
+                color="#132150"
+                component="div"
+              >
+                Payment Partner
+              </Typography>
+              <Typography
+                className={classes.PaymentType}
+                variant="subtitle2"
+                component="span"
+              >
+                <Image
+                  src={'/icons/iconMasterCard.svg'}
+                  width={42}
+                  height={42}
+                  alt=""
+                />
+              </Typography>
+              <Typography
+                className={classes.PaymentType}
+                variant="subtitle2"
+                component="span"
+              >
+                <Image
+                  src={'/icons/iconVisa.svg'}
+                  width={42}
+                  height={42}
+                  alt=""
+                />
+              </Typography>
+              <Typography
+                className={classes.PaymentType}
+                variant="subtitle2"
+                component="span"
+              >
+                <Image
+                  src={'/icons/iconPaypal.svg'}
+                  width={42}
+                  height={42}
+                  alt=""
+                />
+              </Typography>
+            </Box>
+          </Grid>
+        </Grid>
       </Grid>
-      <Grid item xs={8}>
-        <Grid container spacing={2}>
+      <Grid item xs={12} md={8}>
+        <Grid container spacing={2} sx={{ justifyContent: 'space-between' }}>
           {listExtensions.map((item, index) => (
-            <Grid key={index} item xs={4}>
+            <Grid key={index} item xs={6} sm={4}>
               <Typography
                 variant="h3"
                 fontSize={20}

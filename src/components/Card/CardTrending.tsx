@@ -25,23 +25,56 @@ const useStyles = makeStyles((theme: Theme) => ({
       boxShadow:
         '0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%)',
     },
+
+    [theme.breakpoints.down(1004)]: {
+      padding: 18,
+    },
+
+    [theme.breakpoints.down('sm')]: {
+      padding: 14,
+    },
+
+    [theme.breakpoints.down(434)]: {
+      display: 'block',
+    },
   },
 
   CardMedia: {
     borderRadius: 24,
-    maxWidth: 183,
-    maxHeight: 194,
+
+    [theme.breakpoints.up(434)]: {
+      maxWidth: 183,
+      maxHeight: 194,
+    },
   },
 
   CardContent: {
     position: 'relative',
-    paddingLeft: 30,
+    paddingLeft: theme.spacing(3),
     flex: '1 0 auto',
+
+    [theme.breakpoints.down('sm')]: {
+      padding: 0,
+      paddingLeft: theme.spacing(2),
+    },
+
+    [theme.breakpoints.down(434)]: {
+      paddingLeft: 0,
+      paddingTop: theme.spacing(2),
+    },
+  },
+
+  CardTitle: {
+    [theme.breakpoints.down(1004)]: {
+      fontSize: 18,
+    },
+
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 16,
+    },
   },
 
   ButtonBook: {
-    position: 'absolute',
-    bottom: 20,
     width: 140,
     background: '#438BF7',
     borderRadius: 10,
@@ -49,6 +82,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     textTransform: 'none',
     fontWeight: 500,
     fontSize: 16,
+    marginTop: theme.spacing(2),
+
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 14,
+    },
   },
 
   TextPrice: {
@@ -79,12 +117,16 @@ const VTCardTrending = ({
       <CardMedia
         className={classes.CardMedia}
         component="img"
-        height={194}
         image={image}
         alt={title}
       />
       <CardContent className={classes.CardContent}>
-        <Typography component="div" variant="h3" color="#132150">
+        <Typography
+          className={classes.CardTitle}
+          component="div"
+          variant="h3"
+          color="#132150"
+        >
           {title}
         </Typography>
         <Box sx={{ display: 'flex', marginTop: '4px' }}>

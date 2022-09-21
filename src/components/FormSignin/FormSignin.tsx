@@ -39,6 +39,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderColor: theme.palette.grey[100] + ' !important',
     color: theme.palette.grey[900] + '!important',
     fontWeight: 500,
+
+    [theme.breakpoints.down('sm')]: {
+      margin: theme.spacing(1),
+      padding: '5px 26px',
+    },
   },
 
   Stack: {
@@ -49,6 +54,23 @@ const useStyles = makeStyles((theme: Theme) => ({
       fontWeight: 400,
       textDecoration: 'none',
       cursor: 'pointer',
+    },
+
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 12,
+      display: 'block',
+
+      '& .MuiFormControlLabel-root': {
+        width: '100%',
+      },
+
+      '& .MuiTypography-root': {
+        fontSize: 12,
+      },
+
+      '& a': {
+        marginLeft: '0 !important',
+      },
     },
   },
 

@@ -11,17 +11,26 @@ import { makeStyles } from '@mui/styles';
 import React from 'react';
 import Image from 'next/image';
 
-// eslint-disable-next-line no-unused-vars
 const useStyles = makeStyles((theme: Theme) => ({
   Root: {
     margin: '0 auto',
     padding: '20px 0',
     maxWidth: 1240,
     alignItems: 'center',
+    textAlign: 'center',
 
     '& .MuiIconButton-root': {
       padding: 0,
       margin: 7,
+    },
+
+    [theme.breakpoints.down(1300)]: {
+      marginLeft: 20,
+      marginRight: 20,
+    },
+
+    [theme.breakpoints.down('md')]: {
+      display: 'block',
     },
   },
 
@@ -29,11 +38,35 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: '0 10px',
     fontWeight: 500,
     color: '#132150',
+
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
   },
 
   LinkRoot: {
     paddingRight: 10,
     color: '#132150',
+
+    [theme.breakpoints.up('sm')]: {
+      fontSize: 14,
+    },
+
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
+  },
+
+  SocialContainer: {
+    [theme.breakpoints.down('md')]: {
+      marginTop: 10,
+      display: 'flex',
+      justifyContent: 'space-around',
+    },
+
+    [theme.breakpoints.down('sm')]: {
+      marginTop: 0,
+    },
   },
 }));
 
@@ -60,7 +93,7 @@ const Footer = () => {
       direction="row"
       justifyContent="space-between"
     >
-      <Stack direction="row">
+      <Stack justifyContent="center" direction="row">
         <Typography
           className={classes.LinkRoot}
           variant="subtitle2"
@@ -89,7 +122,7 @@ const Footer = () => {
         ))}
       </Stack>
 
-      <Box component={'div'}>
+      <Box className={classes.SocialContainer} component={'div'}>
         {socials.map((item, index) => (
           <Typography
             key={index}

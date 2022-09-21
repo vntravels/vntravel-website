@@ -2,6 +2,7 @@ import { createTheme } from '@mui/material/styles';
 
 import colors from './_themes-vars.module.scss';
 import { themePalette } from './themePalette';
+import { breakpoints } from './breakpoints';
 
 const customTheme = (customization?: any) => {
   const fontFamily = ['Poppins', 'sans-serif'].join(',');
@@ -24,6 +25,7 @@ const customTheme = (customization?: any) => {
 
   return createTheme({
     palette: themePalette(themeOption),
+    breakpoints,
     typography: {
       fontFamily,
       fontWeightMedium: 400, // although Material UI's default value is 500, the text styles on the Figma design use 400

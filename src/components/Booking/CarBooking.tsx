@@ -1,40 +1,26 @@
 import React, { useState } from 'react';
-import { Grid, Theme } from '@mui/material';
+import { Grid } from '@mui/material';
 import Image from 'next/image';
-import { makeStyles } from '@mui/styles';
 import { LocationOnOutlined } from '@mui/icons-material';
-
-import { VTAutocomplete, VTDatePicker } from '@/components/Form';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
-const useStyles = makeStyles((theme: Theme) => ({
-  Root: {
-    alignItems: 'flex-end',
-    margin: 0,
-    paddingTop: theme.spacing(2),
-  },
-
-  IconTransfer: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-}));
+import { VTAutocomplete, VTDatePicker } from '@/components/Form';
+import { useBookingStyles } from '@/styles/components/booking';
 
 interface TabPanelProps {}
 
 const CarBooking = ({}: TabPanelProps) => {
-  const classes = useStyles();
+  const classes = useBookingStyles();
 
   const [startDate, setStartDate] = useState<Date>(new Date());
   const [endDate, setEndDate] = useState<Date>(new Date());
 
   return (
     <Grid className={classes.Root} container>
-      <Grid item xs={5.5}>
-        <Grid container>
-          <Grid item xs={5.5}>
+      <Grid item xs={12} md={5.5}>
+        <Grid className={classes.GridContainer} container>
+          <Grid item xs={12} sm={5.5}>
             <VTAutocomplete
               IconComponent={<LocationOnOutlined />}
               title="Pick Up From"
@@ -51,7 +37,7 @@ const CarBooking = ({}: TabPanelProps) => {
               alt="iconTransfer"
             />
           </Grid>
-          <Grid item xs={5.5}>
+          <Grid item xs={12} sm={5.5}>
             <VTAutocomplete
               IconComponent={<LocationOnOutlined />}
               title="Pick Up To"
@@ -65,9 +51,9 @@ const CarBooking = ({}: TabPanelProps) => {
 
       <Grid item xs={0.5} />
 
-      <Grid item xs={6}>
-        <Grid container>
-          <Grid item xs={5.5}>
+      <Grid item xs={12} md={6}>
+        <Grid container sx={{ justifyContent: 'center' }}>
+          <Grid item xs={12} sm={5.5}>
             <VTDatePicker
               title="Check in"
               selected={startDate}
@@ -85,7 +71,7 @@ const CarBooking = ({}: TabPanelProps) => {
               alt="iconTransfer"
             />
           </Grid>
-          <Grid item xs={5.5}>
+          <Grid item xs={12} sm={5.5}>
             <VTDatePicker
               title="Check out"
               selected={endDate}

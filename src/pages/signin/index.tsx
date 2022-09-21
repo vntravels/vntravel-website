@@ -3,15 +3,7 @@ import type { NextPage } from 'next';
 import Link from 'next/link';
 import { makeStyles } from '@mui/styles';
 import Head from 'next/head';
-import {
-  Box,
-  Grid,
-  Stack,
-  Theme,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from '@mui/material';
+import { Box, Grid, Stack, Theme, Typography, useTheme } from '@mui/material';
 import { useRouter } from 'next/router';
 
 import Logo from '@/components/Logo';
@@ -19,6 +11,7 @@ import FormSignin from '@/components/FormSignin';
 import Footer from '@/layouts/Footer';
 import { useAppSelector } from '@/common/redux/hooks';
 import { selectIsLogin } from '@/common/redux/auth/auth.slice';
+import useResponsive from '@/hooks/useResponsive';
 
 const useStyles = makeStyles((theme: Theme) => ({
   Root: {
@@ -59,15 +52,23 @@ const useStyles = makeStyles((theme: Theme) => ({
       textDecoration: 'none',
       cursor: 'pointer',
     },
+
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 14,
+
+      '& .MuiTypography-root': {
+        fontSize: 12,
+      },
+    },
   },
 }));
 
 const Signin: NextPage = () => {
   const classes = useStyles();
   const theme = useTheme();
-  const matchDownSM = useMediaQuery(theme.breakpoints.down('sm'));
   const router = useRouter();
   const isLogin = useAppSelector(selectIsLogin);
+  const matchDownSM = useResponsive({ query: 'down', key: 'sm' });
 
   useEffect(() => {
     if (isLogin) {
@@ -105,7 +106,7 @@ const Signin: NextPage = () => {
                     <Grid item xs={12}>
                       <Grid
                         container
-                        direction={matchDownSM ? 'column-reverse' : 'row'}
+                        direction={'row'}
                         alignItems="center"
                         justifyContent="center"
                       >
@@ -119,6 +120,7 @@ const Signin: NextPage = () => {
                               color={theme.palette.secondary.main}
                               gutterBottom
                               variant={'h2'}
+                              fontSize={matchDownSM ? 16 : 24}
                             >
                               Hi, Welcome To VnTravel
                             </Typography>
@@ -126,7 +128,7 @@ const Signin: NextPage = () => {
                         </Grid>
                         <Grid className={classes.LinkSignup} item xs={12}>
                           <Typography
-                            component={'span'}
+                            component={matchDownSM ? 'div' : 'span'}
                             variant="subtitle1"
                             color="grey"
                           >

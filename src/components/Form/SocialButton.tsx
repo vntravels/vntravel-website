@@ -12,11 +12,15 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderColor: theme.palette.grey[100],
     color: theme.palette.grey[700],
     textTransform: 'none',
+
     '&:hover': {
       backgroundColor: 'rgb(227, 242, 253)',
     },
+
     [theme.breakpoints.down('sm')]: {
-      fontSize: '0.875rem',
+      '& .MuiTypography-root': {
+        fontSize: '0.82rem',
+      },
     },
   },
 }));

@@ -1,18 +1,33 @@
 import React from 'react';
-import { Card, CardMedia, CardContent, Typography } from '@mui/material';
+import { Card, CardMedia, CardContent, Typography, Theme } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { BedOutlined } from '@mui/icons-material';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme: Theme) => ({
   Root: {
     border: '1px solid #D6D2D2',
     boxShadow: 'none',
     borderRadius: 24,
+    padding: 24,
 
     '&:hover': {
       cursor: 'pointer',
       boxShadow:
         '0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%)',
+    },
+
+    '& .MuiCardMedia-root': {
+      borderRadius: 24,
+    },
+
+    '& .MuiCardContent-root': {
+      paddingLeft: 0,
+      paddingRight: 0,
+      paddingBottom: '0 !important',
+    },
+
+    [theme.breakpoints.down('md')]: {
+      padding: 16,
     },
   },
 
@@ -21,18 +36,30 @@ const useStyles = makeStyles(() => ({
     fontSize: 20,
     lineHeight: '36px',
     color: '#132150',
+
+    [theme.breakpoints.down('md')]: {
+      fontSize: 16,
+    },
   },
 
   CardDescription: {
     fontWeight: 600,
     fontSize: 16,
     color: '#5C5B5B',
+
+    [theme.breakpoints.down('md')]: {
+      fontSize: 14,
+    },
   },
 
   RoomAvailable: {
     fontSize: 16,
     color: '#5C5B5B',
     marginTop: 10,
+
+    [theme.breakpoints.down('md')]: {
+      fontSize: 14,
+    },
   },
 }));
 
@@ -40,38 +67,19 @@ type VTCardProps = {
   title?: string;
   description?: string;
   image?: string;
-  style?: any;
   roomAvailable?: number;
 };
 
-const VTCard = ({
-  title,
-  description,
-  image,
-  style,
-  roomAvailable,
-}: VTCardProps) => {
+const VTCard = ({ title, description, image, roomAvailable }: VTCardProps) => {
   const classes = useStyles();
 
   return (
-    <Card className={classes.Root} sx={{ padding: style.padding }}>
+    <Card className={classes.Root}>
       {image && (
-        <CardMedia
-          sx={{ borderRadius: style.borderRadius }}
-          component="img"
-          width={384}
-          image={image}
-          alt={title}
-        />
+        <CardMedia component="img" width={384} image={image} alt={title} />
       )}
 
-      <CardContent
-        sx={{
-          paddingLeft: style.paddingLeft,
-          paddingRight: style.paddingRight,
-          paddingBottom: style.paddingBottom,
-        }}
-      >
+      <CardContent>
         {title && (
           <Typography
             className={classes.CardTitle}

@@ -6,7 +6,7 @@ import { VTCardTrending } from '../Card';
 const TrendingDestination = () => {
   return (
     <Grid container spacing={3}>
-      <Grid item xs={6}>
+      <Grid item xs={12} md={6}>
         <VTCardTrending
           title="Flight to Nha Trang"
           price="250.000"
@@ -15,7 +15,7 @@ const TrendingDestination = () => {
           image="images/hanoi.png"
         />
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} md={6}>
         <VTCardTrending
           title="Flight to Nha Trang"
           price="250.000"

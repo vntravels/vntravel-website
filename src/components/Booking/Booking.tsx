@@ -18,8 +18,7 @@ import FlightBooking from './FlightBooking';
 import HotelBooking from './HotelBooking';
 import CarBooking from './CarBooking';
 
-// eslint-disable-next-line no-unused-vars
-const useStyles = makeStyles((_theme: Theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   Root: {
     margin: '0 auto',
     padding: 0,
@@ -27,13 +26,21 @@ const useStyles = makeStyles((_theme: Theme) => ({
     marginTop: -95,
     maxWidth: 1240,
     filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1))',
+
+    [theme.breakpoints.down(1300)]: {
+      marginLeft: 20,
+      marginRight: 20,
+    },
   },
 
   BookingContainer: {
     padding: '24px 70px',
     background: '#FFFFFF',
-    height: 190,
     borderRadius: 24,
+
+    [theme.breakpoints.down('md')]: {
+      padding: '12px 20px',
+    },
   },
 
   TabItem: {
@@ -56,11 +63,18 @@ const useStyles = makeStyles((_theme: Theme) => ({
   },
 
   ButtonSubmit: {
-    position: 'absolute',
-    bottom: 0,
-    right: 0,
     background: '#438BF7',
     borderRadius: 10,
+
+    [theme.breakpoints.up('md')]: {
+      position: 'absolute',
+      bottom: 0,
+      right: 0,
+    },
+
+    [theme.breakpoints.down('md')]: {
+      marginTop: 10,
+    },
   },
 
   ButtonText: {
@@ -84,8 +98,8 @@ const Booking = () => {
     <Box className={classes.Root}>
       <Box className={classes.BookingContainer}>
         <Grid container>
-          <Grid item xs={10}>
-            <Tabs value={value} onChange={handleChange}>
+          <Grid item xs={12} md={10}>
+            <Tabs variant="scrollable" value={value} onChange={handleChange}>
               <Tab
                 className={classes.TabItem}
                 label={
@@ -121,7 +135,7 @@ const Booking = () => {
             <TabBooking children={<FlightBooking />} value={value} index={1} />
             <TabBooking children={<CarBooking />} value={value} index={2} />
           </Grid>
-          <Grid item xs={2} position="relative">
+          <Grid item xs={12} md={2} position="relative" textAlign="center">
             <Button className={classes.ButtonSubmit} variant="contained">
               <Typography className={classes.ButtonText}>Search</Typography>
             </Button>

@@ -8,8 +8,7 @@ import {
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
-// eslint-disable-next-line no-unused-vars
-const useStyles = makeStyles((_theme: Theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   Autocomplete: {
     '& .MuiOutlinedInput-root': {
       borderRadius: 10,
@@ -22,6 +21,12 @@ const useStyles = makeStyles((_theme: Theme) => ({
         padding: 0,
         fontWeight: 600,
         fontSize: 14,
+      },
+    },
+
+    [theme.breakpoints.down('md')]: {
+      '& .MuiOutlinedInput-root': {
+        padding: 12,
       },
     },
   },
@@ -41,6 +46,21 @@ const useStyles = makeStyles((_theme: Theme) => ({
       fontWeight: 700,
       fontSize: 16,
       color: '#5C5B5B',
+    },
+
+    [theme.breakpoints.down('md')]: {
+      '& .MuiTypography-root': {
+        fontSize: 14,
+      },
+    },
+
+    [theme.breakpoints.down('sm')]: {
+      '& .MuiTypography-root': {
+        fontSize: 12,
+      },
+      '& .MuiOutlinedInput-input': {
+        fontSize: '12px !important',
+      },
     },
   },
 }));
@@ -68,20 +88,6 @@ const VTAutocomplete = ({
       freeSolo
       disableClearable
       options={data.map((option: any) => option.title)}
-      // ListboxComponent={() => (
-      //   <div className={classes.BoxOptions}>
-      //     <List
-      //       sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-      //       component="nav"
-      //     >
-      //       {data.map((e, index) => (
-      //         <ListItemButton key={index}>
-      //           <ListItemText primary={e.title} />
-      //         </ListItemButton>
-      //       ))}
-      //     </List>
-      //   </div>
-      // )}
       renderOption={(params: object, option: string) => (
         <Box className={classes.BoxOptions} {...params} key={option}>
           <Box sx={{ marginRight: 2 }}>{IconComponent}</Box>

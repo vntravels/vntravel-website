@@ -21,19 +21,27 @@ const useStyles = makeStyles((theme: Theme) => ({
     '& > label': {
       top: '16px',
       left: 0,
-      color: theme.palette.grey,
       '&[data-shrink="false"]': {
         top: '5px',
       },
     },
+
     '& > div > input': {
       padding: '30px 14px 11px !important',
     },
+
     '& legend': {
       display: 'none',
     },
+
     '& fieldset': {
       top: 0,
+    },
+
+    [theme.breakpoints.down('sm')]: {
+      '& .MuiInputLabel-root': {
+        fontSize: 14,
+      },
     },
   },
 }));

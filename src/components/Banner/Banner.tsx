@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundSize: 'cover',
 
     [theme.breakpoints.down('md')]: {
+      paddingTop: 48,
       height: 600,
     },
 
@@ -46,7 +47,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
 
     [theme.breakpoints.down('sm')]: {
-      fontSize: 32,
+      fontSize: 26,
     },
   },
 
@@ -63,7 +64,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
     [theme.breakpoints.down('sm')]: {
       marginTop: 22,
-      fontSize: 20,
+      fontSize: 18,
     },
   },
 }));

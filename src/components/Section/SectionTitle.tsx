@@ -2,18 +2,25 @@ import React from 'react';
 import { Box, Theme, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
-// eslint-disable-next-line no-unused-vars
-const useStyles = makeStyles((_theme: Theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   SectionTitle: {
     fontWeight: 700,
     fontSize: 32,
     color: '#132150',
+
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 22,
+    },
   },
 
   SectionDescription: {
     fontSize: 18,
     color: '#5C5B5B',
     marginTop: 6,
+
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 14,
+    },
   },
 }));
 

@@ -2,12 +2,17 @@ import { Box, Theme } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import React from 'react';
 
-// eslint-disable-next-line no-unused-vars
-const useStyles = makeStyles((_theme: Theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   Root: {
     margin: '0 auto',
     padding: '50px 0',
     maxWidth: 1240,
+
+    [theme.breakpoints.down(1300)]: {
+      marginLeft: 20,
+      marginRight: 20,
+      padding: '30px 0',
+    },
   },
 }));
 

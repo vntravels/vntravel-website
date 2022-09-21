@@ -6,14 +6,31 @@ import moment from 'moment';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
-// eslint-disable-next-line no-unused-vars
-const useStyles = makeStyles((_theme: Theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   Root: {
     background: '#F7F7F7',
     border: '1px solid rgba(0, 0, 0, 0.23)',
     padding: '12px 17px',
     borderRadius: 10,
+
+    [theme.breakpoints.down('md')]: {
+      marginBottom: 8,
+      padding: 12,
+    },
+
+    [theme.breakpoints.down('md')]: {
+      '& .MuiTypography-root': {
+        fontSize: 14,
+      },
+    },
+
+    [theme.breakpoints.down('sm')]: {
+      '& .MuiTypography-root': {
+        fontSize: 12,
+      },
+    },
   },
+
   DateInput: {
     '& .MuiOutlinedInput-input .MuiInputAdornment-positionEnd': {
       display: 'flex',
