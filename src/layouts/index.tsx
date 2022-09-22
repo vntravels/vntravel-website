@@ -30,7 +30,11 @@ export default function Layout({ children }: any) {
         displayToggle={matchDownSm}
         handleLeftDrawerToggle={handleLeftDrawerToggle}
       />
-      <Sidebar drawerOpen={openSidebar} drawerToggle={handleLeftDrawerToggle} />
+      <Sidebar
+        displaySidebar={matchDownSm}
+        drawerOpen={openSidebar}
+        drawerToggle={handleLeftDrawerToggle}
+      />
       <main>{children}</main>
       <Footer />
     </>
