@@ -1,4 +1,4 @@
-import { all, takeEvery } from 'redux-saga/effects';
+import { all, takeEvery, takeLeading } from 'redux-saga/effects';
 
 import { logoutSaga, signinSaga, signupSaga } from './auth/auth.saga';
 import { logout, setSigninData, setSignupData } from './auth/auth.slice';
@@ -14,5 +14,5 @@ export default function* rootSaga() {
   ]);
 
   // user
-  yield all([takeEvery(getUserProfile.type, getMeSaga)]);
+  yield all([takeLeading(getUserProfile.type, getMeSaga)]);
 }

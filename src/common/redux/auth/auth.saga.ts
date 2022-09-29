@@ -33,6 +33,7 @@ export function* signupSaga(action: any): any {
   try {
     const data = yield call(signup, action.payload);
     yield put(setSignupResponse(data));
+    window.location.pathname = 'signin';
   } catch (error: any) {
     yield put(setErrorMessage({ message: error.message }));
     yield put(
