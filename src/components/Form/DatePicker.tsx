@@ -45,6 +45,10 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
+type VTDatePickerProps = ReactDatePickerProps & {
+  value?: string;
+};
+
 const VTDatePicker = ({
   title,
   selected,
@@ -52,7 +56,8 @@ const VTDatePicker = ({
   startDate,
   endDate,
   minDate,
-}: ReactDatePickerProps) => {
+  value,
+}: VTDatePickerProps) => {
   const classes = useStyles();
 
   const CustomInput = selected ? (
@@ -77,6 +82,7 @@ const VTDatePicker = ({
       startDate={startDate}
       endDate={endDate}
       minDate={minDate}
+      value={value}
     />
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Grid } from '@mui/material';
 import Image from 'next/image';
 import { LocationOnOutlined } from '@mui/icons-material';
@@ -8,13 +8,26 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { VTAutocomplete, VTDatePicker } from '@/components/Form';
 import { useBookingStyles } from '@/styles/components/booking';
 
-interface TabPanelProps {}
+type ContentSearch = {
+  location: string;
+  checkin: string;
+  checkout: string;
+};
 
-const CarBooking = ({}: TabPanelProps) => {
+type CarBookingProps = {
+  values: ContentSearch;
+  setValues: React.Dispatch<React.SetStateAction<any>>;
+};
+
+const CarBooking = ({ values, setValues }: CarBookingProps) => {
   const classes = useBookingStyles();
 
   const [startDate, setStartDate] = useState<Date>(new Date());
   const [endDate, setEndDate] = useState<Date>(new Date());
+
+  useEffect(() => {
+    setValues({ type: 'car', checkin: startDate, checkout: endDate });
+  }, [endDate, setValues, startDate]);
 
   return (
     <Grid className={classes.Root} container>
@@ -27,6 +40,9 @@ const CarBooking = ({}: TabPanelProps) => {
               placeholder="Where are you from?"
               data={top100Films}
               type="search"
+              onChange={(_event: any, value: any) => {
+                setValues({ ...values, from: value._id });
+              }}
             />
           </Grid>
           <Grid className={classes.IconTransfer} item xs={1}>
@@ -44,6 +60,9 @@ const CarBooking = ({}: TabPanelProps) => {
               placeholder="Going To?"
               data={top100Films}
               type="search"
+              onChange={(_event: any, value: any) => {
+                setValues({ ...values, to: value._id });
+              }}
             />
           </Grid>
         </Grid>
@@ -57,7 +76,10 @@ const CarBooking = ({}: TabPanelProps) => {
             <VTDatePicker
               title="Check in"
               selected={startDate}
-              onChange={(date: Date) => setStartDate(date)}
+              onChange={(date: Date) => {
+                setStartDate(date);
+                setValues({ ...values, checkin: date });
+              }}
               selectsStart
               startDate={startDate}
               endDate={endDate}
@@ -75,7 +97,10 @@ const CarBooking = ({}: TabPanelProps) => {
             <VTDatePicker
               title="Check out"
               selected={endDate}
-              onChange={(date: Date) => setEndDate(date)}
+              onChange={(date: Date) => {
+                setEndDate(date);
+                setValues({ ...values, checkout: date });
+              }}
               selectsEnd
               startDate={startDate}
               endDate={endDate}
@@ -89,17 +114,11 @@ const CarBooking = ({}: TabPanelProps) => {
 };
 
 const top100Films = [
-  { title: 'The Shawshank Redemption', year: 1994 },
-  { title: 'The Godfather', year: 1972 },
-  { title: 'The Godfather: Part II', year: 1974 },
-  { title: 'The Dark Knight', year: 2008 },
-  { title: '12 Angry Men', year: 1957 },
-  { title: "Schindler's List", year: 1993 },
-  { title: 'Pulp Fiction', year: 1994 },
-  {
-    title: 'The Lord of the Rings: The Return of the King',
-    year: 2003,
-  },
+  { title: 'Da Nang', _id: 1994 },
+  { title: 'Ha Noi', _id: 1972 },
+  { title: 'Sai Gon', _id: 1974 },
+  { title: 'Khanh Hoa', _id: 2008 },
+  { title: 'Quang Ninh', _id: 1957 },
 ];
 
 export default CarBooking;

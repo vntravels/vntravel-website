@@ -12,6 +12,8 @@ import {
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { Hotel, FlightTakeoff, DirectionsCar } from '@mui/icons-material';
+import { useRouter } from 'next/router';
+import moment from 'moment';
 
 import TabBooking from './TabBooking';
 import FlightBooking from './FlightBooking';
@@ -88,10 +90,26 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const Booking = () => {
   const classes = useStyles();
+  const router = useRouter();
+
   const [value, setValue] = useState(0);
+  const [resultSearch, setResultSearch] = useState<any>({});
 
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
+  };
+
+  const onSubmit = (values: any) => {
+    if (values.type === 'hotel') {
+      const checkin = moment(values.checkin).format('YYYY-DD-MM');
+      const checkout = moment(values.checkout).format('YYYY-DD-MM');
+
+      router.push(
+        `/hotel/schedule/search?lo=${
+          values.location || ''
+        }&dt=${checkin}.${checkout}`,
+      );
+    }
   };
 
   return (
@@ -131,12 +149,40 @@ const Booking = () => {
               />
             </Tabs>
             <Divider />
-            <TabBooking children={<HotelBooking />} value={value} index={0} />
-            <TabBooking children={<FlightBooking />} value={value} index={1} />
-            <TabBooking children={<CarBooking />} value={value} index={2} />
+            <TabBooking
+              children={
+                <HotelBooking
+                  values={resultSearch}
+                  setValues={setResultSearch}
+                />
+              }
+              value={value}
+              index={0}
+            />
+            <TabBooking
+              children={
+                <FlightBooking
+                  values={resultSearch}
+                  setValues={setResultSearch}
+                />
+              }
+              value={value}
+              index={1}
+            />
+            <TabBooking
+              children={
+                <CarBooking values={resultSearch} setValues={setResultSearch} />
+              }
+              value={value}
+              index={2}
+            />
           </Grid>
           <Grid item xs={12} md={2} position="relative" textAlign="center">
-            <Button className={classes.ButtonSubmit} variant="contained">
+            <Button
+              className={classes.ButtonSubmit}
+              variant="contained"
+              onClick={() => onSubmit(resultSearch)}
+            >
               <Typography className={classes.ButtonText}>Search</Typography>
             </Button>
           </Grid>

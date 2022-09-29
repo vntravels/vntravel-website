@@ -71,6 +71,8 @@ type VTAutocompleteProps = {
   type: string;
   data: any[];
   IconComponent?: React.ReactNode;
+  value?: any;
+  onChange?: any;
 };
 
 const VTAutocomplete = ({
@@ -79,6 +81,7 @@ const VTAutocomplete = ({
   placeholder,
   type,
   data,
+  onChange,
 }: VTAutocompleteProps) => {
   const classes = useStyles();
 
@@ -87,13 +90,15 @@ const VTAutocomplete = ({
       className={classes.Autocomplete}
       freeSolo
       disableClearable
-      options={data.map((option: any) => option.title)}
-      renderOption={(params: object, option: string) => (
-        <Box className={classes.BoxOptions} {...params} key={option}>
+      options={data}
+      onChange={onChange}
+      renderOption={(params: object, option: any) => (
+        <Box key={option._id} className={classes.BoxOptions} {...params}>
           <Box sx={{ marginRight: 2 }}>{IconComponent}</Box>
-          {option}
+          {option.title}
         </Box>
       )}
+      getOptionLabel={(option) => option.title || ''}
       renderInput={(params) => (
         <TextField
           {...params}
