@@ -16,6 +16,7 @@ import {
   Theme,
   Typography,
 } from '@mui/material';
+import axios from 'axios';
 
 import VTFormInput from '@/components/Form/FormInput';
 import VTSubmitButton from '@/components/Form/SubmitButton';
@@ -23,7 +24,6 @@ import VTSocialButton from '@/components/Form/SocialButton';
 import { useAppDispatch, useAppSelector } from '@/common/redux/hooks';
 import { setSignupData } from '@/common/redux/auth/auth.slice';
 import config from '@/utils/config';
-import AxiosInstance from '@/common/axiosInstance';
 import {
   selectErrorMessage,
   setErrorMessage,
@@ -86,7 +86,7 @@ const FormSignup = () => {
   const login = useGoogleLogin({
     onSuccess: async (credentialResponse) => {
       const { access_token } = credentialResponse;
-      const { data } = await AxiosInstance.get(
+      const { data } = await axios.get(
         `${config.GOOGLE_AUTH_URL}?access_token=${access_token}`,
       );
       const dataUser = {
